@@ -73,9 +73,14 @@ public class CustomerDAO {
 		System.out.println("searchType "+searchType);
 		try {
 				search = "%" + search + "%";
+				
+				//System.out.println("search2 "+search);
+				
 				hql = "FROM Customer WHERE "+searchType+ " LIKE :search";
+				
 				query = session.createQuery(hql);
 				query.setParameter("search",search);
+				
 				listOfCustomers = query.list();
 		}
 		catch (HibernateException e) {

@@ -38,6 +38,11 @@ ${message}
 	<p>year</p>
 	<p><input type="text" name="year" placeholder="year"> </p>
 	
+	<p>start date</p>
+	<p><input type="date" name="startdate"></p>
+	
+	<p>finish date</p>
+	<p><input type="date" name="finishdate"></p>
 	<p><input type="submit" value="Insert Customer"></p>
 </form>
 

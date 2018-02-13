@@ -27,6 +27,8 @@
 				<th>Description</th>
 				<th>Recommended by</th>
 				<th>Year</th>
+				<th>Start date</th>
+				<th>Finish date</th>
 				<!-- <th>Emails</th> -->
 			</tr>
 			<c:forEach var="customer" items="${listOfCustomers}">
@@ -37,12 +39,14 @@
 					<td>${customer.address}</td>
 					
 					<td><c:forEach var="email" items="${customer.emails}">
-							${email.email} <br>
+							<a href="http://www.google.com">${email.email}</a> <br>
 						</c:forEach>
 					</td>
 					<td>${customer.description}</td>
 					<td>${customer.recommendedBy}</td>
 					<td>${customer.year}</td>
+					<td>${customer.startdate}</td>
+					<td>${customer.finishdate}</td>
 					
 				</tr>
 			</c:forEach>
@@ -53,6 +57,9 @@
 		</p>
 		<p>
 			<a href="CustomersServlet?action=showCustomerSearchForm">Search for Customer</a>
+		</p>
+		<p>
+			<a href="CustomersServlet?action=">Home</a>
 		</p>
 </body>
 </html>

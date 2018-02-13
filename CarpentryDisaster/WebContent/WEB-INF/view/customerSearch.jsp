@@ -18,12 +18,19 @@
 	<select name = "select">
 			  <option value="Firstname">First name</option>
 			  <option value="Surname">Surname</option>
+			  <option value="Phonenumber">Phone number</option>
 			  <option value="Address">Address</option>
 			  <option value="Description">Description</option>
 			  <option value="RecommendedBy">Recommended By</option>
 			  <option value="Year">Year</option>
+			  <option value="StartDate">Start Date</option>
+			  <option value="FinishDate">Finish Date</option>
 	</select>
 	<input type="submit" value="Search for customer">
+	
+	<p>
+			<a href="CustomersServlet?action=">Home</a>
+		</p>
 
 </form>
 </body>

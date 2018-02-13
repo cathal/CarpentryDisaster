@@ -96,14 +96,16 @@ public class CustomersServlet extends HttpServlet {
 			 
 			setOfEmails.add(new EmailAddress(0, email));
 		}
-		
+		//a href="https://www.w3schools.com">Visit W3Schools.com!</a>
 		String description = request.getParameter("description");
 		String recommendedBy = request.getParameter("recommendedBy");
 		String year = request.getParameter("year");
+		String startdate = request.getParameter("startdate");
+		String finishdate = request.getParameter("finishdate");
 		
 		
 		 //Create a Customer object 
-		Customer c = new Customer(0, firstname, surname, phoneNumber, address, setOfEmails, description, recommendedBy, year);
+		Customer c = new Customer(0, firstname, surname, phoneNumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		
 		

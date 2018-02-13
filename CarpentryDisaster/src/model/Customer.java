@@ -1,5 +1,6 @@
 package model;
 
+import java.beans.ConstructorProperties;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -72,10 +73,16 @@ public class Customer {
 	private String recommendedBy;
 	@Column
 	private String year;
+	@Column
+	private String startdate;
+	@Column
+	private String finishdate;
 	
 	public Customer() {}
+	
 	public Customer(int id, String firstName, String surName, String phoneNumber, String address,
-			Set<EmailAddress> emails, String description, String recommendedBy, String year) {
+			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
+			String finishdate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -86,6 +93,8 @@ public class Customer {
 		this.description = description;
 		this.recommendedBy = recommendedBy;
 		this.year = year;
+		this.startdate = startdate;
+		this.finishdate = finishdate;
 	}
 	public int getId() {
 		return id;
@@ -141,6 +150,18 @@ public class Customer {
 	public void setYear(String year) {
 		this.year = year;
 	}
+	public String getStartdate() {
+		return startdate;
+	}
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+	public String getFinishdate() {
+		return finishdate;
+	}
+	public void setFinishdate(String finishdate) {
+		this.finishdate = finishdate;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -148,10 +169,12 @@ public class Customer {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((emails == null) ? 0 : emails.hashCode());
+		result = prime * result + ((finishdate == null) ? 0 : finishdate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((recommendedBy == null) ? 0 : recommendedBy.hashCode());
+		result = prime * result + ((startdate == null) ? 0 : startdate.hashCode());
 		result = prime * result + ((surName == null) ? 0 : surName.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
@@ -180,6 +203,11 @@ public class Customer {
 				return false;
 		} else if (!emails.equals(other.emails))
 			return false;
+		if (finishdate == null) {
+			if (other.finishdate != null)
+				return false;
+		} else if (!finishdate.equals(other.finishdate))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -197,6 +225,11 @@ public class Customer {
 				return false;
 		} else if (!recommendedBy.equals(other.recommendedBy))
 			return false;
+		if (startdate == null) {
+			if (other.startdate != null)
+				return false;
+		} else if (!startdate.equals(other.startdate))
+			return false;
 		if (surName == null) {
 			if (other.surName != null)
 				return false;
@@ -213,11 +246,12 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumber="
 				+ phoneNumber + ", address=" + address + ", emails=" + emails + ", description=" + description
-				+ ", recommendedBy=" + recommendedBy + ", year=" + year + "]";
+				+ ", recommendedBy=" + recommendedBy + ", year=" + year + ", startdate=" + startdate + ", finishdate="
+				+ finishdate + "]";
 	}
 	
 	
-	
+
 }
 
 	
