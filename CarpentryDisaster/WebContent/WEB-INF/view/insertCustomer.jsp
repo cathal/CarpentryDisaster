@@ -25,7 +25,7 @@ ${message}
 	
 	<p>address</p>
 	<p><!-- <input type="text" name="address" placeholder="address" required> -->
-	<textarea name="address" rows="5" cols="50" placeholder="address"></textarea> </p>
+	<textarea name="address" rows="6" cols="50" placeholder="address"></textarea> </p>
 	
 	<p>Email Address(es) (insert a space between each one)</p>
 	<textarea name="emails" rows="5" cols="50" placeholder="Email Addresses"></textarea>
