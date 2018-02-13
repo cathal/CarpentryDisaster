@@ -24,7 +24,8 @@ ${message}
 	<p><input type="text" name="phonenumber" placeholder="Phone number" required> </p>
 	
 	<p>address</p>
-	<p><input type="text" name="address" placeholder="address" required> </p>
+	<p><!-- <input type="text" name="address" placeholder="address" required> -->
+	<textarea name="address" rows="5" cols="50" placeholder="address"></textarea> </p>
 	
 	<p>Email Address(es) (insert a space between each one)</p>
 	<textarea name="emails" rows="5" cols="50" placeholder="Email Addresses"></textarea>
@@ -44,6 +45,10 @@ ${message}
 	<p>finish date</p>
 	<p><input type="date" name="finishdate"></p>
 	<p><input type="submit" value="Insert Customer"></p>
+	
+	<p>
+			<a href="CustomersServlet?action=">Home</a>
+		</p>
 </form>
 
 </body>
