@@ -22,7 +22,6 @@
 			  <option value="Address">Address</option>
 			  <option value="Description">Description</option>
 			  <option value="RecommendedBy">Recommended By</option>
-			  <option value="Year">Year</option>
 			  <option value="StartDate">Start Date</option>
 			  <option value="FinishDate">Finish Date</option>
 	</select>
