@@ -31,7 +31,8 @@ ${message}
 	<textarea name="emails" rows="5" cols="50" placeholder="Email Addresses"></textarea>
 	
 	<p>description</p>
-	<p><input type="text" name="description" placeholder="description"> </p>
+	<textarea name="description" rows="5" cols="50" placeholder="description"></textarea>
+	<!-- <p><input type="text" name="description" placeholder="description"> </p> -->
 	
 	<p>recommendedBy</p>
 	<p><input type="text" name="recommendedBy" placeholder="recommendedBy"> </p>

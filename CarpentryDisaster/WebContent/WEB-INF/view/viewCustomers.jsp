@@ -30,7 +30,7 @@
 				<th>Start date</th>
 				<th>Finish date</th>
 				<th>Delete</th>
-				<th>Update</th>
+				
 				<!-- <th>Emails</th> -->
 			</tr>
 			<c:forEach var="customer" items="${listOfCustomers}">
