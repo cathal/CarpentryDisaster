@@ -77,7 +77,7 @@ public class CustomersServlet extends HttpServlet {
 		request.setAttribute("listOfCustomers",listOfCustomers);
 		/* Open the viewAll customers JSP page*/
 		RequestDispatcher dispatcher = request.getRequestDispatcher(
-				"\\WEB-INF\\view\\viewAll.jsp");
+				"\\WEB-INF\\view\\viewCustomers.jsp");
 		dispatcher.forward(request, response);
 		
 	}

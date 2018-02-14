@@ -32,6 +32,17 @@ ${message}
 	
 	<p>description</p>
 	<textarea name="description" rows="5" cols="50" placeholder="description"></textarea>
+	<p><select name = "select">
+			  <option value="Firstname">First name</option>
+			  <option value="Surname">Surname</option>
+			  <option value="Phonenumber">Phone number</option>
+			  <option value="Address">Address</option>
+			  <option value="Description">Description</option>
+			  <option value="RecommendedBy">Recommended By</option>
+			  <option value="StartDate">Start Date</option>
+			  <option value="FinishDate">Finish Date</option>
+	</select>
+	</p>
 	<!-- <p><input type="text" name="description" placeholder="description"> </p> -->
 	
 	<p>recommendedBy</p>
