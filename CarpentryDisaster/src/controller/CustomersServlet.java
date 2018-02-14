@@ -35,6 +35,9 @@ public class CustomersServlet extends HttpServlet {
 		}
 		
 		switch (action) {
+		case "delete":
+			deleteCustomer(request, response);
+			break;
 		case "showCustomerSearchForm":
 			request.getRequestDispatcher("WEB-INF/view/customerSearch.jsp").forward(request, response);
 			break;
@@ -48,9 +51,18 @@ public class CustomersServlet extends HttpServlet {
 			insertCustomer(request, response);
 			break;
 		default: // viewAll
-			viewAll(request, response);
+			getAllCustomers(request, response);
 			break;
 		}
+	}
+	
+	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get the customerId for deletion
+		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		// Send that customerId to the DAO to delete the customer
+		customerDao.deleteCustomer(customerId);
+		// request done! Book deleted, now show all custom
+		response.sendRedirect("CustomersServlet?action=viewAll");
 	}
 	
 	protected void searchForCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -124,6 +136,20 @@ public class CustomersServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
+	private void getAllCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		/* Gets the list of Customers from the DAO (remember the DAO could
+		 * get the Customers from a database/ list/ XML file.
+		 */
+		List<Customer> listOfCustomers = customerDao.getAllCustomers();
+		/*Pass the listOfCustomers to the JSP as an attribute*/
+		request.setAttribute("listOfCustomers", listOfCustomers);
+		/* Open the JSP page*/
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\viewCustomers.jsp");
+		dispatcher.forward(request, response);
+	}
+	
 	
 //	Set<EmailAddress> marysEmails = new HashSet<>();
 //	EmailAddress email1 = new EmailAddress(0, "mary@murphy.ie");
