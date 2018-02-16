@@ -30,6 +30,7 @@
 				<th>Start date</th>
 				<th>Finish date</th>
 				<th>Delete</th>
+				<th>Update</th>
 				
 				<!-- <th>Emails</th> -->
 			</tr>
@@ -50,6 +51,7 @@
 					<td>${customer.startdate}</td>
 					<td>${customer.finishdate}</td>
 					<td><a href="CustomersServlet?action=delete&customerId=${customer.id}">Delete</a></td>
+					<td><a href="CustomersServlet?action=showUpdateForm&customerId=${customer.id}">Update</a></td>
 					
 				</tr>
 			</c:forEach>

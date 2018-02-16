@@ -35,12 +35,17 @@ public class CustomersServlet extends HttpServlet {
 		}
 		
 		switch (action) {
+		case "updateCustomer":
+			updateCustomer(request, response);
+			break;
 		case "delete":
 			deleteCustomer(request, response);
 			break;
 		case "showCustomerSearchForm":
 			request.getRequestDispatcher("WEB-INF/view/customerSearch.jsp").forward(request, response);
 			break;
+		case "showUpdateForm":
+			showUpdateForm(request, response);
 		case "searchForCustomer":
 			searchForCustomer(request, response);
 			break;
@@ -56,6 +61,49 @@ public class CustomersServlet extends HttpServlet {
 		}
 	}
 	
+	private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get all the parameters from the updateCustomer.jsp
+		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		String firstname = request.getParameter("firstname");
+		String surname = request.getParameter("surname");
+		String phonenumber = request.getParameter("phonenumber");
+		String address = request.getParameter("address");
+		String [] emails = request.getParameter("emails").split("[\\s,]+");
+		HashSet<EmailAddress> setOfEmails = new HashSet<>();
+		
+		 /*The loop goes through the String array of emails (each one
+		 * is a String). To add to the HashSet, I need each email address
+		 * which is a String to be an EmailAddress object, therefore
+		 * I have passed the email String into the EmailAddress
+		 * constructor and added that to the HashSet  */
+		for (String email : emails) {
+			/* You could use a constructor with no id (if you have one) or use
+			 * the constructor that takes all parameters and pass in 0 for the id,
+			 * if you omitted the id, it would default to 0 anyway. */
+			 
+			setOfEmails.add(new EmailAddress(0, email));
+		}
+		
+		String description = request.getParameter("description");
+		String recommendedBy = request.getParameter("recommendedBy");
+		String year = request.getParameter("year");
+		String startdate = request.getParameter("startdate");
+		String finishdate = request.getParameter("finishdate");
+		
+		//Create an updated customer out of them
+		Customer customerToUpdate = new Customer(customerId, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		
+		// Pass that book to the DAO so that the book with the same
+				 //id can be updated in the list. */
+				
+		customerDao.updateCustomer(customerToUpdate);
+				
+		// request is complete, redirect the response to a 'viewAll'
+		response.sendRedirect("BookServlet?action=viewAll");
+		
+	}
+	
+	
 	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get the customerId for deletion
 		int customerId = Integer.parseInt(request.getParameter("customerId"));
@@ -65,7 +113,25 @@ public class CustomersServlet extends HttpServlet {
 		response.sendRedirect("CustomersServlet?action=viewAll");
 	}
 	
-	protected void searchForCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Get the customerID, which was sent as a parameter from the
+		 * update link in the viewCustomers.jsp
+		 */
+		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		System.out.println("customerId "+customerId);
+		/* the update form needs a Customer object so that it can display
+		 * all the Customers details
+		 */
+		Customer customer = customerDao.getCustomerbyId(customerId);
+		/* Pass that customer onto the JSP using request.setAttribute() */
+		request.setAttribute("customer", customer);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\updateCustomer.jsp");
+		dispatcher.forward(request, response);
+		
+		
+	}
+	
+	private void searchForCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String search = request.getParameter("search");
 		String searchType = request.getParameter("select");

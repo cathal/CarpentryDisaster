@@ -140,4 +140,20 @@ public class CustomerDAO {
 		
 		return listOfCustomers;
 	}
+	
+	public void updateCustomer(Customer updatedCustomer) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.update(updatedCustomer);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 }
