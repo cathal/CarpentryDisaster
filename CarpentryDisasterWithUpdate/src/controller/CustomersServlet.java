@@ -15,7 +15,7 @@ import org.hibernate.mapping.Set;
 
 import model.Customer;
 import model.EmailAddress;
-
+/*jj*/
 @WebServlet("/CustomersServlet")
 public class CustomersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
