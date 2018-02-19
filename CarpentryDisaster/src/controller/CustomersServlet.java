@@ -99,7 +99,7 @@ public class CustomersServlet extends HttpServlet {
 		customerDao.updateCustomer(customerToUpdate);
 				
 		// request is complete, redirect the response to a 'viewAll'
-		response.sendRedirect("BookServlet?action=viewAll");
+		response.sendRedirect("CustomersServlet?action=viewAll");
 		
 	}
 	

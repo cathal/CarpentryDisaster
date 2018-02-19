@@ -100,7 +100,7 @@ public class CustomersServlet extends HttpServlet {
 		customerDao.updateCustomer(customerToUpdate);
 				
 		// request is complete, redirect the response to a 'viewAll'
-		response.sendRedirect("BookServlet?action=viewAll");
+		response.sendRedirect("CustomersServlet?action=viewAll");
 		
 	}
 	
@@ -153,10 +153,10 @@ public class CustomersServlet extends HttpServlet {
 		
 	}
 
-	protected void viewAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void viewAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("listOfCustomers", customerDao.getAllCustomers());
 		request.getRequestDispatcher("WEB-INF/view/viewAll.jsp").forward(request, response);
-	}
+	}*/
 
 	protected void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstname = request.getParameter("firstname");
