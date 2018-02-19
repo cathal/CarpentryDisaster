@@ -15,7 +15,7 @@ import model.EmailAddress;
 
 
 public class CustomerDAO {
-	
+	/*gjhhg*/
 	public void insertCustomer(Customer c) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
