@@ -34,6 +34,9 @@ public class CustomersServlet extends HttpServlet {
 			action = "viewAll";
 		}
 		
+		//test 2
+		//test 4
+		
 		switch (action) {
 		case "updateCustomer":
 			updateCustomer(request, response);
