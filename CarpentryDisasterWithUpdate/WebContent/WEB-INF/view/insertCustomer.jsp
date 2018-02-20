@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<h2>Insert Customer</h2>
+<h2>Insert Customer 2</h2>
 
 ${message}
 
