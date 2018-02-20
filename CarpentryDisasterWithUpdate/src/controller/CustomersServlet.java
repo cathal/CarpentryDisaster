@@ -36,7 +36,7 @@ public class CustomersServlet extends HttpServlet {
 		
 		//Shane Lennon
 		//Shane Lennon 2
-		// Sean Masterson
+		//Sean Masterson
 		
 		switch (action) {
 		case "updateCustomer":
