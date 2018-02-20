@@ -35,7 +35,7 @@ public class Customer {
 	 *  
 	 * 
 	 * @JoinColumn creates an extra column in the EmailAddress table
-	 * called 'personId' and inserts the primary key from this table
+	 * called 'customerId' and inserts the primary key from this table
 	 * into that new column. E.g. Joe Bloggs' id is 1 and Joe has two
 	 * email addresses, the email addresses will both have a personId
 	 * of 1. personId is the foreign key. 
