@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/*change1*/
+
+
 @Entity
 public class PhoneNumber {
 	@Id//primary key
