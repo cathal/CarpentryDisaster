@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 
 import model.Customer;
 import model.EmailAddress;
-
+/*This is a test.*/
 
 public class CustomerDAO {
 	/*gjhhg*/
