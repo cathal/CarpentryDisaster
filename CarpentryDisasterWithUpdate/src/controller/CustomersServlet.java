@@ -29,7 +29,8 @@ public class CustomersServlet extends HttpServlet {
     /*shnechange*/
     /*latestchangeshane*/
     /*latestchangeshane2*/
-    /*latestchangeshane3*/
+    /*latestchangeshane3*/    
+    /*kevin, shane, damien*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
 		
