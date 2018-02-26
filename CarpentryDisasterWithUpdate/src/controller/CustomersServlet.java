@@ -169,6 +169,8 @@ public class CustomersServlet extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String surname = request.getParameter("surname");
 		String phoneNumber = request.getParameter("phonenumber");
+		
+		
 		String address = request.getParameter("address");
 		String [] emails = request.getParameter("emails").split("[\\s,]+");
 		HashSet<EmailAddress> setOfEmails = new HashSet<>();
