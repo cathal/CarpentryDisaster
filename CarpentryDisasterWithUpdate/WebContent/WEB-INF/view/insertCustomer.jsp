@@ -22,7 +22,8 @@ ${message}
 	
 	<p>Phone number(s) (insert a space between each one)</p>
 	<textarea name="phoneNumbers" rows="5" cols="50" placeholder="Phone Numbers"></textarea>
-	<p><input type="text" name="phonenumber" placeholder="Phone number" required> </p>
+	
+	<!-- <p><input type="text" name="phonenumber" placeholder="Phone number" required> </p> -->
 	
 	<p>address</p>
 	<p><!-- <input type="text" name="address" placeholder="address" required> -->
