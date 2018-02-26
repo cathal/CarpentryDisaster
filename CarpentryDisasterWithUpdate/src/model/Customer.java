@@ -23,9 +23,13 @@ public class Customer {
 	private String firstName;
 	@Column
 	private String surName;
-	@Column
-	private String phoneNumber;
-	@Column
+	/*@Column
+	private String phoneNumber;*/
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="customerId")
+	private Set<PhoneNumber> phoneNumbers;
+
 	private String address;
 	
 	/* @OneToMany says: 'one' person can have 'many' email addresses.
@@ -79,15 +83,15 @@ public class Customer {
 	private String finishdate;
 	
 	public Customer() {}
-	
-	public Customer(int id, String firstName, String surName, String phoneNumber, String address,
+
+	public Customer(int id, String firstName, String surName, Set<PhoneNumber> phoneNumbers, String address,
 			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
 			String finishdate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.surName = surName;
-		this.phoneNumber = phoneNumber;
+		this.phoneNumbers = phoneNumbers;
 		this.address = address;
 		this.emails = emails;
 		this.description = description;
@@ -96,72 +100,95 @@ public class Customer {
 		this.startdate = startdate;
 		this.finishdate = finishdate;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getSurName() {
 		return surName;
 	}
+
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public Set<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public Set<EmailAddress> getEmails() {
 		return emails;
 	}
+
 	public void setEmails(Set<EmailAddress> emails) {
 		this.emails = emails;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getRecommendedBy() {
 		return recommendedBy;
 	}
+
 	public void setRecommendedBy(String recommendedBy) {
 		this.recommendedBy = recommendedBy;
 	}
+
 	public String getYear() {
 		return year;
 	}
+
 	public void setYear(String year) {
 		this.year = year;
 	}
+
 	public String getStartdate() {
 		return startdate;
 	}
+
 	public void setStartdate(String startdate) {
 		this.startdate = startdate;
 	}
+
 	public String getFinishdate() {
 		return finishdate;
 	}
+
 	public void setFinishdate(String finishdate) {
 		this.finishdate = finishdate;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -172,13 +199,14 @@ public class Customer {
 		result = prime * result + ((finishdate == null) ? 0 : finishdate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((phoneNumbers == null) ? 0 : phoneNumbers.hashCode());
 		result = prime * result + ((recommendedBy == null) ? 0 : recommendedBy.hashCode());
 		result = prime * result + ((startdate == null) ? 0 : startdate.hashCode());
 		result = prime * result + ((surName == null) ? 0 : surName.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -215,10 +243,10 @@ public class Customer {
 			return false;
 		if (id != other.id)
 			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
+		if (phoneNumbers == null) {
+			if (other.phoneNumbers != null)
 				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
+		} else if (!phoneNumbers.equals(other.phoneNumbers))
 			return false;
 		if (recommendedBy == null) {
 			if (other.recommendedBy != null)
@@ -242,16 +270,17 @@ public class Customer {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumber="
-				+ phoneNumber + ", address=" + address + ", emails=" + emails + ", description=" + description
+		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumbers="
+				+ phoneNumbers + ", address=" + address + ", emails=" + emails + ", description=" + description
 				+ ", recommendedBy=" + recommendedBy + ", year=" + year + ", startdate=" + startdate + ", finishdate="
 				+ finishdate + "]";
 	}
 	
 	
-
+	
 }
 
 	
