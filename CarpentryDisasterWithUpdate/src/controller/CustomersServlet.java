@@ -15,6 +15,7 @@ import org.hibernate.mapping.Set;
 
 import model.Customer;
 import model.EmailAddress;
+import model.PhoneNumber;
 
 @WebServlet("/CustomersServlet")
 public class CustomersServlet extends HttpServlet {
@@ -168,7 +169,15 @@ public class CustomersServlet extends HttpServlet {
 	protected void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstname = request.getParameter("firstname");
 		String surname = request.getParameter("surname");
-		String phoneNumber = request.getParameter("phonenumber");
+		//String phoneNumber = request.getParameter("phonenumber");
+		
+		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
+		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
+		
+		for(String phoneNumber : phoneNumbers)
+		{
+			setOfPhoneNumbers.add(new PhoneNumber(0,phoneNumber));
+		}
 		
 		
 		String address = request.getParameter("address");
@@ -196,20 +205,22 @@ public class CustomersServlet extends HttpServlet {
 		
 		
 		 //Create a Customer object 
-		Customer c = new Customer(0, firstname, surname, phoneNumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer c = new Customer(0, firstname, surname, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		
-		
+		customerDao.insertCustomer(c);
+		/* After a Person is inserted, view them all! */
+		response.sendRedirect("CustomersServlet?action=viewAll");
 		/* Send the Person object to the DAO */
-		if (customerDao.customerExists(c)) {
+		/*if (customerDao.customerExists(c)) {
 			request.setAttribute("message", 
 					c.getFirstName() + " is already in the database");
 			request.getRequestDispatcher("WEB-INF/view/insertCustomer.jsp").forward(request, response);
 		} else {
 			customerDao.insertCustomer(c);
-			/* After a Person is inserted, view them all! */
+			 After a Person is inserted, view them all! 
 			response.sendRedirect("CustomersServlet?action=viewAll");
-		}
+		}*/
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
