@@ -75,7 +75,23 @@ public class CustomersServlet extends HttpServlet {
 		int customerId = Integer.parseInt(request.getParameter("customerId"));
 		String firstname = request.getParameter("firstname");
 		String surname = request.getParameter("surname");
-		String phonenumber = request.getParameter("phonenumber");
+		
+		/*String phonenumber = request.getParameter("phonenumber");*/
+		
+		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
+		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
+		
+		 /*The loop goes through the String array of phone numbers (each one
+		 * is a String). To add to the HashSet, I need each phone number
+		 * which is a String to be a PhoneNumber object, therefore
+		 * I have passed the PhoneNUmber String into the PhoneNumber
+		 * constructor and added that to the HashSet  */
+		for(String phoneNumber : phoneNumbers)
+		{
+			setOfPhoneNumbers.add(new PhoneNumber(0,phoneNumber));
+		}
+		
+		
 		String address = request.getParameter("address");
 		String [] emails = request.getParameter("emails").split("[\\s,]+");
 		HashSet<EmailAddress> setOfEmails = new HashSet<>();
@@ -100,7 +116,7 @@ public class CustomersServlet extends HttpServlet {
 		String finishdate = request.getParameter("finishdate");
 		
 		//Create an updated customer out of them
-		Customer customerToUpdate = new Customer(customerId, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer customerToUpdate = new Customer(customerId, firstname, surname, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		// Pass that book to the DAO so that the book with the same
 				 //id can be updated in the list. */
@@ -174,6 +190,11 @@ public class CustomersServlet extends HttpServlet {
 		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
 		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
 		
+		 /*The loop goes through the String array of phone numbers (each one
+		 * is a String). To add to the HashSet, I need each phone number
+		 * which is a String to be a PhoneNumber object, therefore
+		 * I have passed the PhoneNUmber String into the PhoneNumber
+		 * constructor and added that to the HashSet  */
 		for(String phoneNumber : phoneNumbers)
 		{
 			setOfPhoneNumbers.add(new PhoneNumber(0,phoneNumber));
