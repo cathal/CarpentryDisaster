@@ -26,6 +26,7 @@ public class Customer {
 	/*@Column
 	private String phoneNumber;*/
 	
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name ="customerId")
 	private Set<PhoneNumber> phoneNumbers;
