@@ -1,5 +1,6 @@
 package controller;
 /*nnnhfghg*/
+/*nnnhfghg2*/
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -35,8 +36,7 @@ public class CustomersServlet extends HttpServlet {
     /*yetanotherchange*/
     /*yetanotherotherballychange*/
     /*yetanotherotherballychange4*/
-    /*Last change 3*/
-    /*Last change 4*/
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
 		
