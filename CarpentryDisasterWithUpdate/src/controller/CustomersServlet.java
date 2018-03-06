@@ -226,7 +226,7 @@ public class CustomersServlet extends HttpServlet {
 		Customer insertCustomer = new Customer(0, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		customerDao.insertCustomer(insertCustomer);
-		/* After a Person is inserted, view them all! */
+		/* After a Customer is inserted, view them all! */
 		response.sendRedirect("CustomersServlet?action=viewAll");
 		/* Send the Person object to the DAO */
 		/*if (customerDao.customerExists(c)) {
