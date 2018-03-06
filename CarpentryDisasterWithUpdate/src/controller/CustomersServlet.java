@@ -27,11 +27,7 @@ public class CustomersServlet extends HttpServlet {
     public CustomersServlet() {
     	customerDao = new CustomerDAO();
     }
-<<<<<<< HEAD
-//change 6/3/18//
-=======
-	
->>>>>>> branch 'master' of https://github.com/TrioOrg/Trio.git
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
