@@ -27,15 +27,7 @@ public class CustomersServlet extends HttpServlet {
     public CustomersServlet() {
     	customerDao = new CustomerDAO();
     }
-	/* test*/
-    /*shnechange*/
-    /*latestchangeshane*/
-    /*latestchangeshane2*/
-    /*latestchangeshane3*/    
-    /*kevin, shane, damien*/
-    /*yetanotherchange*/
-    /*yetanotherotherballychange*/
-    /*yetanotherotherballychange4*/
+//change 6/3/18//
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
