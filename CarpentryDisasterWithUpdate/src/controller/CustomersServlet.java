@@ -1,6 +1,6 @@
 package controller;
-/*nnnhfghg*/
-/*nnnhfghg2*/
+
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +27,11 @@ public class CustomersServlet extends HttpServlet {
     public CustomersServlet() {
     	customerDao = new CustomerDAO();
     }
+<<<<<<< HEAD
 //change 6/3/18//
+=======
+	
+>>>>>>> branch 'master' of https://github.com/TrioOrg/Trio.git
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
@@ -73,27 +77,27 @@ public class CustomersServlet extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String surname = request.getParameter("surname");
 		
-		/*String phonenumber = request.getParameter("phonenumber");*/
+		String phonenumber = request.getParameter("phonenumber");
 		
-		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
+		/*String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
 		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
 		
-		 /*The loop goes through the String array of phone numbers (each one
+		 The loop goes through the String array of phone numbers (each one
 		 * is a String). To add to the HashSet, I need each phone number
 		 * which is a String to be a PhoneNumber object, therefore
 		 * I have passed the PhoneNUmber String into the PhoneNumber
-		 * constructor and added that to the HashSet  */
+		 * constructor and added that to the HashSet  
 		for(String phoneNumber : phoneNumbers)
 		{
 			setOfPhoneNumbers.add(new PhoneNumber(0,phoneNumber));
-		}
+		}*/
 		
 		
 		String address = request.getParameter("address");
 		String [] emails = request.getParameter("emails").split("[\\s,]+");
 		HashSet<EmailAddress> setOfEmails = new HashSet<>();
-		
-		 /*The loop goes through the String array of emails (each one
+		/*
+		 The loop goes through the String array of emails (each one
 		 * is a String). To add to the HashSet, I need each email address
 		 * which is a String to be an EmailAddress object, therefore
 		 * I have passed the email String into the EmailAddress
@@ -101,8 +105,8 @@ public class CustomersServlet extends HttpServlet {
 		for (String email : emails) {
 			/* You could use a constructor with no id (if you have one) or use
 			 * the constructor that takes all parameters and pass in 0 for the id,
-			 * if you omitted the id, it would default to 0 anyway. */
-			 
+			 * if you omitted the id, it would default to 0 anyway. 
+			 */
 			setOfEmails.add(new EmailAddress(0, email));
 		}
 		
@@ -113,7 +117,7 @@ public class CustomersServlet extends HttpServlet {
 		String finishdate = request.getParameter("finishdate");
 		
 		//Create an updated customer out of them
-		Customer customerToUpdate = new Customer(customerId, firstname, surname, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer customerToUpdate = new Customer(0, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		// Pass that book to the DAO so that the book with the same
 				 //id can be updated in the list. */
@@ -182,7 +186,7 @@ public class CustomersServlet extends HttpServlet {
 	protected void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstname = request.getParameter("firstname");
 		String surname = request.getParameter("surname");
-		//String phoneNumber = request.getParameter("phonenumber");
+		String phonenumber = request.getParameter("phonenumber");
 		
 		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
 		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
@@ -223,11 +227,10 @@ public class CustomersServlet extends HttpServlet {
 		
 		
 		 //Create a Customer object 
-		Customer c = new Customer(0, firstname, surname, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer insertCustomer = new Customer(0, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
-		
-		customerDao.insertCustomer(c);
-		/* After a Person is inserted, view them all! */
+		customerDao.insertCustomer(insertCustomer);
+		/* After a Customer is inserted, view them all! */
 		response.sendRedirect("CustomersServlet?action=viewAll");
 		/* Send the Person object to the DAO */
 		/*if (customerDao.customerExists(c)) {

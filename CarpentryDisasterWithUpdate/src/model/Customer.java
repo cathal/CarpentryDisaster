@@ -23,13 +23,13 @@ public class Customer {
 	private String firstName;
 	@Column
 	private String surName;
-	/*@Column
-	private String phoneNumber;*/
+	@Column
+	private String phoneNumber;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	/*@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name ="customerId")
-	private Set<PhoneNumber> phoneNumbers;
+	private Set<PhoneNumber> phoneNumbers;*/
 
 	private String address;
 	
@@ -84,15 +84,15 @@ public class Customer {
 	private String finishdate;
 	
 	public Customer() {}
-
-	public Customer(int id, String firstName, String surName, Set<PhoneNumber> phoneNumbers, String address,
+	
+	public Customer(int id, String firstName, String surName, String phoneNumber, String address,
 			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
 			String finishdate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.surName = surName;
-		this.phoneNumbers = phoneNumbers;
+		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.emails = emails;
 		this.description = description;
@@ -126,12 +126,12 @@ public class Customer {
 		this.surName = surName;
 	}
 
-	public Set<PhoneNumber> getPhoneNumbers() {
-		return phoneNumbers;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getAddress() {
@@ -200,7 +200,7 @@ public class Customer {
 		result = prime * result + ((finishdate == null) ? 0 : finishdate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((phoneNumbers == null) ? 0 : phoneNumbers.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((recommendedBy == null) ? 0 : recommendedBy.hashCode());
 		result = prime * result + ((startdate == null) ? 0 : startdate.hashCode());
 		result = prime * result + ((surName == null) ? 0 : surName.hashCode());
@@ -244,10 +244,10 @@ public class Customer {
 			return false;
 		if (id != other.id)
 			return false;
-		if (phoneNumbers == null) {
-			if (other.phoneNumbers != null)
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
 				return false;
-		} else if (!phoneNumbers.equals(other.phoneNumbers))
+		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		if (recommendedBy == null) {
 			if (other.recommendedBy != null)
@@ -274,12 +274,11 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumbers="
-				+ phoneNumbers + ", address=" + address + ", emails=" + emails + ", description=" + description
+		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumber="
+				+ phoneNumber + ", address=" + address + ", emails=" + emails + ", description=" + description
 				+ ", recommendedBy=" + recommendedBy + ", year=" + year + ", startdate=" + startdate + ", finishdate="
 				+ finishdate + "]";
 	}
-	
 	
 	
 }
