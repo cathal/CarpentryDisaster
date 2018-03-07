@@ -29,6 +29,6 @@
                       if the table exist already, they will be deleted. 
              'update' allows changes to be made without recreating all tables -->
         
-        <property name="hbm2ddl.auto">update</property> 
+        <property name="hbm2ddl.auto">create</property> 
     </session-factory>
 </hibernate-configuration>
