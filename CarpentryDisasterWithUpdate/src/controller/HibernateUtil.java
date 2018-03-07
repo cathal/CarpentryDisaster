@@ -6,7 +6,11 @@ import org.hibernate.cfg.Configuration;
 
 import model.Customer;
 import model.EmailAddress;
+
+import model.PhoneNumber;
+
 import model.Material;
+//github.com/TrioOrg/Trio.git
 
 
 public class HibernateUtil {
@@ -39,8 +43,10 @@ public class HibernateUtil {
 		 **/
 		config.addAnnotatedClass(Customer.class);
 		config.addAnnotatedClass(EmailAddress.class);
+		config.addAnnotatedClass(PhoneNumber.class);
+
 		config.addAnnotatedClass(Material.class);
-		
+		//github.com/TrioOrg/Trio.git<!-->branch 'master' of https
 		/* config.getProperties() gets all the mappings/ properties 
 		 * from the hibernate config file. */
 		StandardServiceRegistryBuilder builder = 
