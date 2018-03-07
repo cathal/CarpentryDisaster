@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import model.Customer;
 import model.EmailAddress;
+import model.Material;
 
 
 public class HibernateUtil {
@@ -38,6 +39,7 @@ public class HibernateUtil {
 		 **/
 		config.addAnnotatedClass(Customer.class);
 		config.addAnnotatedClass(EmailAddress.class);
+		config.addAnnotatedClass(Material.class);
 		
 		/* config.getProperties() gets all the mappings/ properties 
 		 * from the hibernate config file. */
