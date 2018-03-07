@@ -1,8 +1,6 @@
 package model;
 
-import java.beans.ConstructorProperties;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,54 +21,21 @@ public class Customer {
 	private String firstName;
 	@Column
 	private String surName;
-	@Column
-	private String phoneNumber;
-	
-	
-	/*@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name ="customerId")
-	private Set<PhoneNumber> phoneNumbers;*/
-
-	private String address;
-	
-	/* @OneToMany says: 'one' person can have 'many' email addresses.
-	 * When you store the EmailAddress objects in a Set, hibernate will 
-	 * create a table called EmailAddress and insert an entry in that
-	 * table for each email address.
-	 *  
-	 * 
-	 * @JoinColumn creates an extra column in the EmailAddress table
-	 * called 'customerId' and inserts the primary key from this table
-	 * into that new column. E.g. Joe Bloggs' id is 1 and Joe has two
-	 * email addresses, the email addresses will both have a personId
-	 * of 1. personId is the foreign key. 
-	 * 
-	 * cascade=CascadeType.ALL
-	 * If I delete a Person from the 'one' table, it will cascade into
-	 * the EmailAddress table, i.e. all email address entries for that
-	 * person will be deleted too.
-	 * 
-	 * A Set is a list that won't store duplicates. A Set is an interface,
-	 * to create a Set, you should instantiate the HashSet class (which
-	 * implements the Set interface).
-	 * 
-	 * Person
-	 * id	firstname surname phoneNumber   
-	 * 1    Joe       Bloggs  0862134567
-	 * 
-	 * EmailAddress
-	 * id	email 				  personId
-	 * 100  joe@bloggs.ie		  1
-	 * 101  joebloggs@gmail.com   1
-	 * 102	jb@me.com			  1
-	 * 
-	 * */
-	
+	//@Column//
+	//private String phoneNumber;//
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name ="customerId")
+	private Set<PhoneNumber> phoneNumbers;
+
+	private String address;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="customerId")
 	private Set<EmailAddress> emails;
+	
+	
 	
 	@Column
 	private String description;
@@ -83,16 +48,16 @@ public class Customer {
 	@Column
 	private String finishdate;
 	
-	public Customer() {}
+	public Customer () {}
 	
-	public Customer(int id, String firstName, String surName, String phoneNumber, String address,
+	public Customer(int id, String firstName, String surName, Set<PhoneNumber> phoneNumbers, String address,
 			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
 			String finishdate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.surName = surName;
-		this.phoneNumber = phoneNumber;
+		this.phoneNumbers = phoneNumbers;
 		this.address = address;
 		this.emails = emails;
 		this.description = description;
@@ -126,12 +91,12 @@ public class Customer {
 		this.surName = surName;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public Set<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
 	}
 
 	public String getAddress() {
@@ -200,7 +165,7 @@ public class Customer {
 		result = prime * result + ((finishdate == null) ? 0 : finishdate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((phoneNumbers == null) ? 0 : phoneNumbers.hashCode());
 		result = prime * result + ((recommendedBy == null) ? 0 : recommendedBy.hashCode());
 		result = prime * result + ((startdate == null) ? 0 : startdate.hashCode());
 		result = prime * result + ((surName == null) ? 0 : surName.hashCode());
@@ -244,10 +209,10 @@ public class Customer {
 			return false;
 		if (id != other.id)
 			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
+		if (phoneNumbers == null) {
+			if (other.phoneNumbers != null)
 				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
+		} else if (!phoneNumbers.equals(other.phoneNumbers))
 			return false;
 		if (recommendedBy == null) {
 			if (other.recommendedBy != null)
@@ -274,14 +239,20 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumber="
-				+ phoneNumber + ", address=" + address + ", emails=" + emails + ", description=" + description
+		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumbers="
+				+ phoneNumbers + ", address=" + address + ", emails=" + emails + ", description=" + description
 				+ ", recommendedBy=" + recommendedBy + ", year=" + year + ", startdate=" + startdate + ", finishdate="
 				+ finishdate + "]";
 	}
 	
 	
-}
+	
+	}
+
+
+	
+	
+
 
 	
 	
