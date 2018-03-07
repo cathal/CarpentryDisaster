@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.mapping.Set;
+import org.omg.CORBA.Request;
 
 import model.Customer;
 import model.EmailAddress;
@@ -70,10 +71,10 @@ public class CustomersServlet extends HttpServlet {
 	private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get all the parameters from the updateCustomer.jsp
 		int customerId = Integer.parseInt(request.getParameter("customerId"));
-		String firstname = request.getParameter("firstname");
-		String surname = request.getParameter("surname");
+		String firstName = request.getParameter("firstname");
+		String surName = request.getParameter("surname");
 		
-		String phonenumber = request.getParameter("phonenumber");
+		//String phonenumber = request.getParameter("phonenumber");//
 		
 		/*String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
 		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
@@ -84,12 +85,27 @@ public class CustomersServlet extends HttpServlet {
 		 * I have passed the PhoneNUmber String into the PhoneNumber
 		 * constructor and added that to the HashSet  
 		for(String phoneNumber : phoneNumbers)
-		{
-			setOfPhoneNumbers.add(new PhoneNumber(0,phoneNumber));
-		}*/
+	*/
+		
+		String [] phoneNumbers =request.getParameter("phoneNumbers").split("[\\s,]+");
+		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
+		
+		for(String phoneNumber: phoneNumbers) {
+			
+			setOfPhoneNumbers.add(new PhoneNumber(0, phoneNumber));
+			
+		}
+		
+		/* You could use a constructor with no id (if you have one) or use
+		 * the constructor that takes all parameters and pass in 0 for the id,
+		 * if you omitted the id, it would default to 0 anyway. 
+		 */
+		
+		
 		
 		
 		String address = request.getParameter("address");
+		
 		String [] emails = request.getParameter("emails").split("[\\s,]+");
 		HashSet<EmailAddress> setOfEmails = new HashSet<>();
 		/*
@@ -104,7 +120,11 @@ public class CustomersServlet extends HttpServlet {
 			 * if you omitted the id, it would default to 0 anyway. 
 			 */
 			setOfEmails.add(new EmailAddress(0, email));
+			
+			
 		}
+	
+		
 		
 		String description = request.getParameter("description");
 		String recommendedBy = request.getParameter("recommendedBy");
@@ -113,7 +133,8 @@ public class CustomersServlet extends HttpServlet {
 		String finishdate = request.getParameter("finishdate");
 		
 		//Create an updated customer out of them
-		Customer customerToUpdate = new Customer(0, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer customerToUpdate= new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+				
 		
 		// Pass that book to the DAO so that the book with the same
 				 //id can be updated in the list. */
@@ -180,9 +201,9 @@ public class CustomersServlet extends HttpServlet {
 	}*/
 
 	protected void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String firstname = request.getParameter("firstname");
-		String surname = request.getParameter("surname");
-		String phonenumber = request.getParameter("phonenumber");
+		String firstName = request.getParameter("firstname");
+		String surName = request.getParameter("surname");
+		
 		
 		String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
 		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
@@ -223,7 +244,7 @@ public class CustomersServlet extends HttpServlet {
 		
 		
 		 //Create a Customer object 
-		Customer insertCustomer = new Customer(0, firstname, surname, phonenumber, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer insertCustomer = new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 		
 		customerDao.insertCustomer(insertCustomer);
 		/* After a Customer is inserted, view them all! */

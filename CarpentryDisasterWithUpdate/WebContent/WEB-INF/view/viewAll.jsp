@@ -31,31 +31,29 @@
 				<th>Finish date</th>
 				<th>Delete</th>
 				<th>Update</th>
-				<th>Materials2</th>
-				
 				<!-- <th>Emails</th> -->
-			
+			</tr>
 			<c:forEach var="customer" items="${listOfCustomers}">
 				<tr><td>${customer.id}</td>
 					<td>${customer.firstName}</td>
 					<td>${customer.surName}</td>
-						
-					<td><c:forEach var="email" items="${customer.phoneNumbers}">
-							${email.phoneNumber} <br>
-						</c:forEach></td>
+					<td><c:forEach var="phoneNumber" items="${customer.phoneNumbers}">
+							 ${phoneNumber.phoneNumber}
+						</c:forEach>
+						</td>
 					<td>${customer.address}</td>
-					
 					<td><c:forEach var="email" items="${customer.emails}">
-							${email.email} <br>
+							${email.email}
 						</c:forEach>
 					</td>
+					
+					
 					<td>${customer.description}</td>
 					<td>${customer.recommendedBy}</td>
 					<td>${customer.year}</td>
 					<td>${customer.startdate}</td>
 					<td>${customer.finishdate}</td>
 					<td><a href="CustomersServlet?action=delete&customerId=${customer.id}">Delete</a></td>
-					<td><a href="CustomersServlet?action=showUpdateForm&customerId=${customer.id}">Update</a></td>
 					
 				</tr>
 			</c:forEach>
