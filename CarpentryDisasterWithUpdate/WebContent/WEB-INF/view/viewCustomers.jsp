@@ -34,16 +34,19 @@
 				<th>Materials2</th>
 				
 				<!-- <th>Emails</th> -->
-			</tr>
+			
 			<c:forEach var="customer" items="${listOfCustomers}">
 				<tr><td>${customer.id}</td>
 					<td>${customer.firstName}</td>
 					<td>${customer.surName}</td>
-					<td>${customer.phoneNumber}</td>
+						
+					<td><c:forEach var="email" items="${customer.phoneNumbers}">
+							${email.phoneNumber} <br>
+						</c:forEach></td>
 					<td>${customer.address}</td>
 					
 					<td><c:forEach var="email" items="${customer.emails}">
-							<a href="http://www.google.com">${email.email}</a> <br>
+							${email.email} <br>
 						</c:forEach>
 					</td>
 					<td>${customer.description}</td>

@@ -37,13 +37,17 @@
 				<tr><td>${customer.id}</td>
 					<td>${customer.firstName}</td>
 					<td>${customer.surName}</td>
-					<td>${customer.phoneNumber}</td>
+					<td><c:forEach var="phoneNumber" items="${customer.phoneNumbers}">
+							 ${phoneNumber.phoneNumber}
+						</c:forEach>
+						</td>
 					<td>${customer.address}</td>
-					
 					<td><c:forEach var="email" items="${customer.emails}">
-							<a href="http://www.google.com">${email.email}</a> <br>
+							${email.email}
 						</c:forEach>
 					</td>
+					
+					
 					<td>${customer.description}</td>
 					<td>${customer.recommendedBy}</td>
 					<td>${customer.year}</td>
