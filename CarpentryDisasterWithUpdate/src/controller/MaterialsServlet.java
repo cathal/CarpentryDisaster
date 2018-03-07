@@ -16,7 +16,7 @@ import model.Material;
 
 
 /**
- * Servlet implementation class MaterialsServlet
+
  */
 @WebServlet("/MaterialsServlet")
 public class MaterialsServlet extends HttpServlet {
