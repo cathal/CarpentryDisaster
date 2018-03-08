@@ -37,8 +37,6 @@ public class MaterialsServlet extends HttpServlet {
 			action = "viewAll";
 		}
 		
-		
-		
 		switch (action) {
 		case "insertMaterial":
 			insertMaterial(request, response);
@@ -63,8 +61,8 @@ public class MaterialsServlet extends HttpServlet {
 	
 	private void showInsertMaterialsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		//int id = request.g("id");
-		String description = request.getParameter("description");
 		String item = request.getParameter("item");
+		String description = request.getParameter("description");
 		BigDecimal unitExcl = new BigDecimal(request.getParameter("excl"));
 		BigDecimal totalExcl = new BigDecimal(request.getParameter("totalExcl"));
 		BigDecimal totalIncl = new BigDecimal(request.getParameter("totalIncl"));

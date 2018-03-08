@@ -7,9 +7,8 @@
 <title>Insert Customer</title>
 <style><%@include file="/WEB-INF/css/style.css"%></style> 
 </head>
-
 <body>
-<h2>Insert Customer 3</h2>
+<h2>Insert Customer </h2>
 
 ${message}
 

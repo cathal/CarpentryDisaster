@@ -22,8 +22,15 @@
 		<p>Surname</p>
 		<p><input type="text" name="surname" value="${customer.surName}"></p>
 		
+		<c:set var="allNumbers" value=""/>
+		<c:forEach var="number" items="${customer.phoneNumbers}">
+			<c:set var="allNumbers" value="${allNumbers.concat(number.phoneNumber).concat(' ')}"/>
+		</c:forEach>
+		<p>
 		<p>Phone number</p>
-		<p><input type="text" name="phonenumber" value="${customer.phoneNumber}"></p>
+		<p><textarea rows="5" cols="50" name="phoneNumbers">${allNumbers}</textarea> </p>
+		
+		<!-- <p><input type="text" name="phonenumber" value="${customer.phoneNumbers}"></p> -->
 		
 		<p>Address</p>
 		<p><textarea rows="5" cols="50" name="address">${customer.address}</textarea></p>
