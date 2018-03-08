@@ -85,7 +85,7 @@ public class CustomerDAO {
 		/* Assign the two parameters their values */
 		query.setParameter("first", c.getFirstName());
 		query.setParameter("second", c.getSurName());
-		query.setParameter("phone", c.getPhoneNumber());
+		query.setParameter("phone", c.getPhoneNumbers());
 		
 		List<Customer> result = query.list();
 		session.close();

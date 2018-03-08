@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Insert Materials</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 </head>
 <body>
 <h2>Insert Materials</h2>
+
+${message}
 
 <form action="MaterialsServlet?action=insertMaterials" method="post">
 	<p>Item</p>
@@ -27,7 +30,9 @@
 	
 	<p><input type="submit" value="Insert Material"></p>
 	
-	
+	<p>
+			<a href="MaterialsServlet?action=">Home</a>
+		</p>
 </form>
 
 </body>

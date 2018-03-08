@@ -7,9 +7,8 @@
 <title>Insert Customer</title>
 <style><%@include file="/WEB-INF/css/style.css"%></style> 
 </head>
-
 <body>
-<h2>Insert Customer 3</h2>
+<h2>Insert Customer </h2>
 
 ${message}
 
@@ -21,8 +20,9 @@ ${message}
 	<p><input type="text" name="surname" placeholder="Surname" required> </p>
 	
 	<p>Phone number(s) (insert a space between each one)</p>
+	<p>
 	<textarea name="phoneNumbers" rows="5" cols="50" placeholder="Phone Numbers"></textarea>
-	
+	</p>
 	<!-- <p><input type="text" name="phonenumber" placeholder="Phone number" required> </p> -->
 	
 	<p>address</p>
