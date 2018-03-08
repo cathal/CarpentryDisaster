@@ -133,7 +133,7 @@ public class CustomersServlet extends HttpServlet {
 		String finishdate = request.getParameter("finishdate");
 		
 		//Create an updated customer out of them
-		Customer customerToUpdate= new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer customerToUpdate= new Customer(customerId, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
 				
 		
 		// Pass that book to the DAO so that the book with the same

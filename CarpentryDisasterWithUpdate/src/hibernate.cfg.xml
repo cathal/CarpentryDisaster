@@ -9,7 +9,7 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         
-        <property name="connection.url">jdbc:sqlserver://SD-19;databaseName=CarpentryDisaster</property>
+        <property name="connection.url">jdbc:sqlserver://SD-19;databaseName=CarpentryDisaster2</property>
         <property name="connection.username">shane</property>
         <property name="connection.password">shane</property>
         
@@ -22,13 +22,13 @@
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
         <!-- Print out all executed SQL to stdout -->
-        <property name="show_sql">true</property>
+        <property name="show_sql">create</property>
 
         <!-- 'create' will drop and re-create the database schema on 
                       startup, any tables that are needed will be created, 
                       if the table exist already, they will be deleted. 
              'update' allows changes to be made without recreating all tables -->
         
-        <property name="hbm2ddl.auto">create</property> 
+        <property name="hbm2ddl.auto">update</property> 
     </session-factory>
 </hibernate-configuration>
