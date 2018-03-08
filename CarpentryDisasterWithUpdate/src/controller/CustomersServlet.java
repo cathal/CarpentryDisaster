@@ -166,7 +166,7 @@ public class CustomersServlet extends HttpServlet {
 		 * all the Customers details
 		 */
 		Customer customer = customerDao.getCustomerbyId(customerId);
-		
+		System.out.println("customer to update: " + customer);
 		//List<EmailAddress> emails;
 		//for loop??
 		EmailAddress email= customerDao.getEmailbyId(customerId);
@@ -250,15 +250,15 @@ public class CustomersServlet extends HttpServlet {
 		/* After a Customer is inserted, view them all! */
 		response.sendRedirect("CustomersServlet?action=viewAll");
 		/* Send the Person object to the DAO */
-		/*if (customerDao.customerExists(c)) {
+		if (customerDao.customerExists(insertCustomer)) {
 			request.setAttribute("message", 
-					c.getFirstName() + " is already in the database");
+					insertCustomer.getFirstName() + " is already in the database");
 			request.getRequestDispatcher("WEB-INF/view/insertCustomer.jsp").forward(request, response);
 		} else {
-			customerDao.insertCustomer(c);
-			 After a Person is inserted, view them all! 
+			customerDao.insertCustomer(insertCustomer);
+			/* After a Person is inserted, view them all! */
 			response.sendRedirect("CustomersServlet?action=viewAll");
-		}*/
+		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

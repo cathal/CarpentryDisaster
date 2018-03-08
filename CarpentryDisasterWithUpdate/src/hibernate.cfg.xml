@@ -13,7 +13,7 @@
         <property name="connection.username">shane</property>
         <property name="connection.password">shane</property>
         
-       <property name="hibernate.enable_lazy_load_no_trans">true</property>      
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>     
 
         <!-- SQL dialect, e.g. some dbs take an int, some take an Integer -->
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>

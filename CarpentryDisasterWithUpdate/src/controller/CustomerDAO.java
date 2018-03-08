@@ -79,13 +79,13 @@ public class CustomerDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		String hql = "FROM Customer where firstName = :first "
-				     + "AND surName = :second "
-				     + "AND phoneNumber =:phone";
+				     + "AND surName = :second ";
+				     /*+ "AND phoneNumber =:phone";*/
 		Query<Customer> query = session.createQuery(hql);
 		/* Assign the two parameters their values */
 		query.setParameter("first", c.getFirstName());
 		query.setParameter("second", c.getSurName());
-		query.setParameter("phone", c.getPhoneNumbers());
+		/*query.setParameter("phone", c.getPhoneNumbers());*/
 		
 		List<Customer> result = query.list();
 		session.close();
