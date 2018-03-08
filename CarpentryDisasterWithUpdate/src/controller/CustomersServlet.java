@@ -124,7 +124,7 @@ public class CustomersServlet extends HttpServlet {
 			
 		}
 	
-		
+		//change1
 		
 		String description = request.getParameter("description");
 		String recommendedBy = request.getParameter("recommendedBy");
