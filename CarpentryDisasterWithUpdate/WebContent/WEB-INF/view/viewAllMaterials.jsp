@@ -28,6 +28,8 @@
 				<th>Total Incl</th>
 				<th>Delete</th>
 				<th>Update</th>
+				<th>Add</th>
+				<th>Remove</th>
 			</tr>
 			<c:forEach var="material" items="${listOfMaterials}">
 				<tr>
@@ -41,6 +43,8 @@
 					<td>${material.totalIncl}</td>
 					<td><a href="MaterialsServlet?action=delete&materialId=${material.id}">Delete</a></td>
 					<td><a href="MaterialsServlet?action=showUpdateForm&materialId=${material.id}">Update</a></td>
+					<td><a href="MaterialsServlet?action=addMaterials&materialId=${material.id}">Add</a></td>
+					<td><a href="MaterialsServlet?action=removeMaterials&materialId=${material.id}">Remove</a></td>
 					
 				</tr>
 			</c:forEach>

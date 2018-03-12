@@ -36,6 +36,9 @@ public class Customer {
 	private Set<EmailAddress> emails;
 	
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name ="customerId")
+	private Set<Material> materials;
 	
 	@Column
 	private String description;
@@ -52,7 +55,7 @@ public class Customer {
 	
 	public Customer(int id, String firstName, String surName, Set<PhoneNumber> phoneNumbers, String address,
 			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
-			String finishdate) {
+			String finishdate, Set<Material> materials) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -65,6 +68,30 @@ public class Customer {
 		this.year = year;
 		this.startdate = startdate;
 		this.finishdate = finishdate;
+		this.materials = materials;
+	}
+	
+	public void addMaterial(Material m)
+	{
+		materials.add(m);
+	}
+	
+	public void removeMaterial(Material m)
+	{
+		materials.remove(m);
+	}
+	
+	public void updateMaterial(Material m)
+	{
+		
+	}
+
+	public Set<Material> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(Set<Material> materials) {
+		this.materials = materials;
 	}
 
 	public int getId() {
@@ -155,6 +182,8 @@ public class Customer {
 		this.finishdate = finishdate;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -165,6 +194,7 @@ public class Customer {
 		result = prime * result + ((finishdate == null) ? 0 : finishdate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((materials == null) ? 0 : materials.hashCode());
 		result = prime * result + ((phoneNumbers == null) ? 0 : phoneNumbers.hashCode());
 		result = prime * result + ((recommendedBy == null) ? 0 : recommendedBy.hashCode());
 		result = prime * result + ((startdate == null) ? 0 : startdate.hashCode());
@@ -209,6 +239,11 @@ public class Customer {
 			return false;
 		if (id != other.id)
 			return false;
+		if (materials == null) {
+			if (other.materials != null)
+				return false;
+		} else if (!materials.equals(other.materials))
+			return false;
 		if (phoneNumbers == null) {
 			if (other.phoneNumbers != null)
 				return false;
@@ -240,10 +275,12 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumbers="
-				+ phoneNumbers + ", address=" + address + ", emails=" + emails + ", description=" + description
-				+ ", recommendedBy=" + recommendedBy + ", year=" + year + ", startdate=" + startdate + ", finishdate="
-				+ finishdate + "]";
+				+ phoneNumbers + ", address=" + address + ", emails=" + emails + ", materials=" + materials
+				+ ", description=" + description + ", recommendedBy=" + recommendedBy + ", year=" + year
+				+ ", startdate=" + startdate + ", finishdate=" + finishdate + "]";
 	}
+
+	
 	
 	
 	
