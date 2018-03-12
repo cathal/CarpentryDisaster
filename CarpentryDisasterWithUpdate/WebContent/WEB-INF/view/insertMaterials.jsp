@@ -17,7 +17,10 @@ ${message}
 	<p><input type="text" name="item" placeholder="Item" required> </p>
 	
 	<p>Description</p>
-	<p><input type="text" name="description" placeholder="Description" required> </p>
+	<!-- <p><input type="text" name="description" placeholder="Description" required> </p> -->
+	<p>
+	<textarea name="description" rows="2" cols="50" placeholder="Description"></textarea>
+	</p>
 	
 	<p>Unit Excl</p>
 	<p><input type="text" name="unitExcl" placeholder="Unit Excl" required> </p>
