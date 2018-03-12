@@ -70,6 +70,21 @@ public class Customer {
 		this.finishdate = finishdate;
 		this.materials = materials;
 	}
+	
+	public void addMaterial(Material m)
+	{
+		materials.add(m);
+	}
+	
+	public void removeMaterial(Material m)
+	{
+		materials.remove(m);
+	}
+	
+	public void updateMaterial(Material m)
+	{
+		
+	}
 
 	public Set<Material> getMaterials() {
 		return materials;

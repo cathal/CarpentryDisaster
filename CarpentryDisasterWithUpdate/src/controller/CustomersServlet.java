@@ -17,6 +17,7 @@ import org.omg.CORBA.Request;
 
 import model.Customer;
 import model.EmailAddress;
+import model.Material;
 import model.PhoneNumber;
 
 @WebServlet("/CustomersServlet")
@@ -67,6 +68,7 @@ public class CustomersServlet extends HttpServlet {
 			break;
 		}
 	}
+	
 	
 	private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get all the parameters from the updateCustomer.jsp
@@ -132,8 +134,10 @@ public class CustomersServlet extends HttpServlet {
 		String startdate = request.getParameter("startdate");
 		String finishdate = request.getParameter("finishdate");
 		
+		HashSet<Material> materials = new HashSet<>();
+		
 		//Create an updated customer out of them
-		Customer customerToUpdate= new Customer(customerId, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer customerToUpdate= new Customer(customerId, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate, materials);
 				
 		
 		// Pass that book to the DAO so that the book with the same
@@ -242,9 +246,9 @@ public class CustomersServlet extends HttpServlet {
 		String startdate = request.getParameter("startdate");
 		String finishdate = request.getParameter("finishdate");
 		
-		
+		HashSet<Material> materials = new HashSet<>();
 		 //Create a Customer object 
-		Customer insertCustomer = new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate);
+		Customer insertCustomer = new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate, materials);
 		
 		customerDao.insertCustomer(insertCustomer);
 		/* After a Customer is inserted, view them all! */
