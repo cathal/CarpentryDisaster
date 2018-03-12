@@ -3,10 +3,11 @@ package model;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+@Entity
 public class Material {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -69,6 +70,7 @@ public class Material {
 		this.totalIncl = totalIncl;
 	}
 
+	public Material() {}
 	public Material(int id, String description, String item, BigDecimal unitExcl, BigDecimal totalExcl,
 			BigDecimal totalIncl) {
 		super();

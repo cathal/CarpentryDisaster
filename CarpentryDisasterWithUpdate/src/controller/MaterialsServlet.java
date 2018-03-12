@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Customer;
+import model.EmailAddress;
 import model.Material;
 
 
@@ -38,43 +39,97 @@ public class MaterialsServlet extends HttpServlet {
 		}
 		
 		switch (action) {
-		case "insertMaterial":
+		case "updateMaterials":
+			updateMaterials(request, response);
+			break;
+		case "insertMaterials":
 			insertMaterial(request, response);
 			break;
 		case "showInsertMaterialsForm":
 			request.getRequestDispatcher("WEB-INF/view/insertMaterials.jsp").forward(request, response);
 			break;	
+		case "delete":
+			deleteMaterials(request, response);
+			break;
+			case "showUpdateForm":
+			showUpdateForm(request, response);
+			break;
 		default: // viewAll
 			getAllMaterials(request, response);
 			break;
 		}
 	}
 	
-	protected void insertMaterial(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String item = request.getParameter("item");
-		String description = request.getParameter("description");
-		BigDecimal unitExcl = new BigDecimal(request.getParameter("excl"));
-		BigDecimal totalExcl = new BigDecimal(request.getParameter("totalExcl"));
-		BigDecimal totalIncl = new BigDecimal(request.getParameter("totalIncl"));
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 	
-	
-	private void showInsertMaterialsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		//int id = request.g("id");
-		String item = request.getParameter("item");
+	private void updateMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int materialId = Integer.parseInt(request.getParameter("materialId"));
+		String item= request.getParameter("item");
 		String description = request.getParameter("description");
-		BigDecimal unitExcl = new BigDecimal(request.getParameter("excl"));
+		BigDecimal unitExcl = new BigDecimal(request.getParameter("unitExcl"));
 		BigDecimal totalExcl = new BigDecimal(request.getParameter("totalExcl"));
 		BigDecimal totalIncl = new BigDecimal(request.getParameter("totalIncl"));
 		
 		
-		Material materialToUpdate = new Material(0, description, item, unitExcl, totalExcl, totalIncl);
+		
+		Material materialToUpdate = new Material(materialId, description, item, unitExcl, totalExcl, totalIncl);
 		
 		materialDAO.updateMaterial(materialToUpdate);
-				
+		
 		response.sendRedirect("MaterialsServlet?action=viewAll");
+	}
+	protected void insertMaterial(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String item = request.getParameter("item");
+		String description = request.getParameter("description");
+		BigDecimal unitExcl = new BigDecimal(request.getParameter("unitExcl"));
+		BigDecimal totalExcl = new BigDecimal(request.getParameter("totalExcl"));
+		BigDecimal totalIncl = new BigDecimal(request.getParameter("totalIncl"));
+		
+		//Create a Material object
+		Material insertMaterial = new Material(0, description, item, unitExcl, totalExcl, totalIncl);
+		
+		materialDAO.insertMaterials(insertMaterial);
+		
+		response.sendRedirect("MaterialsServlet?action=viewAll");
+		}
+	
+	private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Get the customerID, which was sent as a parameter from the
+		 * update link in the viewCustomers.jsp
+		 */
+		int materialId = Integer.parseInt(request.getParameter("materialId"));
+		//System.out.println("customerId "+customerId);
+		/* the update form needs a Customer object so that it can display
+		 * all the Customers details
+		 */
+		Material material = materialDAO.getMaterialbyId(materialId);
+		
+		//List<EmailAddress> emails;
+		//for loop??
+		//EmailAddress email= customerDao.getEmailbyId(customerId);
+		/* Pass that customer onto the JSP using request.setAttribute() */
+		request.setAttribute("material", material);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\updateMaterials.jsp");
+		dispatcher.forward(request, response);
 		
 	}
+	
+	
+	
+	private void deleteMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get the customerId for deletion
+		int materialId = Integer.parseInt(request.getParameter("materialId"));
+		// Send that customerId to the DAO to delete the customer
+		materialDAO.deleteMaterial(materialId);
+		// request done! Book deleted, now show all custom
+		response.sendRedirect("MaterialsServlet?action=viewAll");
+	}
+	
 	
 	
 	
