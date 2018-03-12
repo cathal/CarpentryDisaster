@@ -119,8 +119,6 @@ public class MaterialsServlet extends HttpServlet {
 		
 	}
 	
-	
-	
 	private void deleteMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get the customerId for deletion
 		int materialId = Integer.parseInt(request.getParameter("materialId"));
@@ -129,10 +127,6 @@ public class MaterialsServlet extends HttpServlet {
 		// request done! Book deleted, now show all custom
 		response.sendRedirect("MaterialsServlet?action=viewAll");
 	}
-	
-	
-	
-	
 	
 	private void getAllMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Gets the list of Customers from the DAO (remember the DAO could

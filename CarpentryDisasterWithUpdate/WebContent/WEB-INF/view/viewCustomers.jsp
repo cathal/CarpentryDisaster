@@ -31,7 +31,7 @@
 				<th>Finish date</th>
 				<th>Delete</th>
 				<th>Update</th>
-				<th>Materials2</th>
+				<th>Materials</th>
 				
 				<!-- <th>Emails</th> -->
 			
@@ -56,6 +56,8 @@
 					<td>${customer.finishdate}</td>
 					<td><a href="CustomersServlet?action=delete&customerId=${customer.id}">Delete</a></td>
 					<td><a href="CustomersServlet?action=showUpdateForm&customerId=${customer.id}">Update</a></td>
+					<td><a href="MaterialsServlet?action=viewAll&customerId=${customer.id}&customer=${customer}">Materials</a></td>
+					
 					
 				</tr>
 			</c:forEach>
