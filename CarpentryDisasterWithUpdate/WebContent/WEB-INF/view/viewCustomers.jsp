@@ -31,7 +31,7 @@
 				<th>Finish date</th>
 				<th>Delete</th>
 				<th>Update</th>
-				<th>Materials2</th>
+				<th>Materials</th>
 				
 				<!-- <th>Emails</th> -->
 			
