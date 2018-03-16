@@ -10,7 +10,6 @@
 </head>
 <body>
 <h2>List of Materials.</h2>
-
 <c:if test="${empty listOfMaterials}">
 	There are no entries in the database.
 </c:if>
@@ -28,8 +27,8 @@
 				<th>Total Incl</th>
 				<th>Delete</th>
 				<th>Update</th>
-				<th>Add</th>
-				<th>Remove</th>
+				<th>Add to cart</th>
+				
 			</tr>
 			<c:forEach var="material" items="${listOfMaterials}">
 				<tr>
@@ -41,17 +40,17 @@
 					<td>${material.unitExcl}</td>
 					<td>${material.totalExcl}</td>
 					<td>${material.totalIncl}</td>
-					<td><a href="MaterialsServlet?action=delete&materialId=${material.id}">Delete</a></td>
-					<td><a href="MaterialsServlet?action=showUpdateForm&materialId=${material.id}">Update</a></td>
+					<td><a href="MaterialsServlet?action=delete&materialId=${material.id}&customerId=${customerId}">Delete</a></td>
+					<td><a href="MaterialsServlet?action=showUpdateForm&materialId=${material.id}&customerId=${customerId}">Update</a></td>
 					<td><a href="MaterialsServlet?action=addMaterials&materialId=${material.id}">Add</a></td>
-					<td><a href="MaterialsServlet?action=removeMaterials&materialId=${material.id}">Remove</a></td>
+					
 					
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 		<p>
-			<a href="MaterialsServlet?action=showInsertMaterialsForm">Insert New Material</a>
+			<a href="MaterialsServlet?action=showInsertMaterialsForm&customerId=${customerId}">Insert New Material</a>
 		</p>
 		
 </body>

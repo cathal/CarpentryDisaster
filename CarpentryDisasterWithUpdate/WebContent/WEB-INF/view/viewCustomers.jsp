@@ -56,7 +56,7 @@
 					<td>${customer.finishdate}</td>
 					<td><a href="CustomersServlet?action=delete&customerId=${customer.id}">Delete</a></td>
 					<td><a href="CustomersServlet?action=showUpdateForm&customerId=${customer.id}">Update</a></td>
-					<td><a href="MaterialsServlet?action=viewAll&customerId=${customer.id}&customer=${customer}">Materials</a></td>
+					<td><a href="MaterialsServlet?action=viewAll&customerId=${customer.id}">Materials</a></td>
 					
 					
 				</tr>

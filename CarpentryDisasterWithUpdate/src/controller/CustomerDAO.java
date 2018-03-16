@@ -96,16 +96,21 @@ public class CustomerDAO {
 	}
 	
 	public List<Customer> getAllCustomers() {
-		List<Customer> listOfCustomers = new ArrayList<>();
+		//List<Customer> listOfCustomers = new ArrayList<>();
+		//Session session = HibernateUtil.getSessionFactory().openSession();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
-		try {
+		Query<Customer> query = session.createQuery("FROM Customer");
+		List<Customer> listOfCustomers = query.list();
+		
+		session.close();
+		/*try {
 			Query<Customer> query = session.createQuery("FROM Customer");
-			/* query.list() executes the Hibernate Query Language
+			 query.list() executes the Hibernate Query Language
 			 * (FROM Customer), gets all the Customer rows from the database,
 			 * turns each row into a Customer object, using the Customer
 			 * constructor, adds each Customer to a List and returns that list
-			 */
+			 
 			listOfCustomers = query.list();
 			System.out.println(listOfCustomers);
 		}
@@ -113,7 +118,7 @@ public class CustomerDAO {
 			e.printStackTrace();
 		}finally {
 			session.close();
-		}
+		}*/
 		return listOfCustomers;
 	}
 	
