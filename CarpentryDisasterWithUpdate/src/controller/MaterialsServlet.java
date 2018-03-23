@@ -162,7 +162,9 @@ public class MaterialsServlet extends HttpServlet {
 		 * get the Customers from a database/ list/ XML file.
 		 */
 		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		
 		List<Material> listOfMaterials = materialDAO.getAllMaterials();
+		System.out.println("-------------"+listOfMaterials);
 		/*Pass the listOfCustomers to the JSP as an attribute*/
 		request.setAttribute("listOfMaterials", listOfMaterials);
 		request.setAttribute("customerId", customerId);

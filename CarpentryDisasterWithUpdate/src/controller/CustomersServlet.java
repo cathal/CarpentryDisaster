@@ -29,18 +29,17 @@ public class CustomersServlet extends HttpServlet {
     public CustomersServlet() {
     	customerDao = new CustomerDAO();
     }
-
+       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
+		
 		
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "viewAll";
 		}
-		
-		
-		
+	
 		switch (action) {
 		case "updateCustomer":
 			updateCustomer(request, response);
@@ -49,6 +48,7 @@ public class CustomersServlet extends HttpServlet {
 			deleteCustomer(request, response);
 			break;
 		case "showCustomerSearchForm":
+			System.out.println(" in the case search");
 			request.getRequestDispatcher("WEB-INF/view/customerSearch.jsp").forward(request, response);
 			break;
 		case "showUpdateForm":
@@ -58,6 +58,7 @@ public class CustomersServlet extends HttpServlet {
 			searchForCustomer(request, response);
 			break;
 		case "showInsertCustomerForm":
+			System.out.println(" in the case insert");
 			request.getRequestDispatcher("WEB-INF/view/insertCustomer.jsp").forward(request, response);
 			break;
 		case "insertCustomer":
@@ -149,6 +150,8 @@ public class CustomersServlet extends HttpServlet {
 	
 		
 	}
+	
+
 	
 	
 	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -270,6 +273,7 @@ public class CustomersServlet extends HttpServlet {
 	
 	private void getAllCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		System.out.println("In getallcus");
 		/* Gets the list of Customers from the DAO (remember the DAO could
 		 * get the Customers from a database/ list/ XML file.
 		 */

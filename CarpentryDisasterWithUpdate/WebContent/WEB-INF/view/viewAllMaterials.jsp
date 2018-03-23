@@ -10,6 +10,12 @@
 </head>
 <body>
 <h2>List of Materials.</h2>
+
+<%-- <c:if test="${not empty allCartMaterials}">
+	<a href="CartServlet?action=viewMaterialsCart">View Materials Cart</a>
+</c:if> --%>
+
+
 <c:if test="${empty listOfMaterials}">
 	There are no entries in the database.
 </c:if>
@@ -42,7 +48,7 @@
 					<td>${material.totalIncl}</td>
 					<td><a href="MaterialsServlet?action=delete&materialId=${material.id}&customerId=${customerId}">Delete</a></td>
 					<td><a href="MaterialsServlet?action=showUpdateForm&materialId=${material.id}&customerId=${customerId}">Update</a></td>
-					<td><a href="MaterialsServlet?action=addMaterials&materialId=${material.id}">Add</a></td>
+					<td><a href="CartServlet?action=addCartMaterial&materialId=${material.id}&customerId=${customerId}">Add to cart</a></td>
 					
 					
 				</tr>
