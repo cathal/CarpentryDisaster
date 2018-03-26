@@ -5,17 +5,18 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-
 import org.hibernate.Transaction;
-
 import org.hibernate.query.Query;
 
 import model.Customer;
 import model.EmailAddress;
-/*This is a test.*/
 
 public class CustomerDAO {
-	/*gjhhg*/
+	
+	public CustomerDAO() {
+		System.out.println("CustomerDAO Constructor called");
+	}
+	
 	public void insertCustomer(Customer c) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -44,9 +45,9 @@ public class CustomerDAO {
 			 * argument, loops through all the rows in the Book table,
 			 finds the matching row for that id (primary key)
 			 retrieves that row, turns it into a Customer object, using the constructor
-			 and setters from the Customer class (listed as the first argument)*/ 
+			 and setters from the Customer class (listed as the first argument) */
 			Customer customer = session.get(Customer.class, customerId);
-			/*Deletes the book from the database*/
+			//Deletes the book from the database
 			session.delete(customer);
 			tx.commit();
 		} catch(HibernateException e) {
@@ -90,18 +91,23 @@ public class CustomerDAO {
 		List<Customer> result = query.list();
 		session.close();
 		
-		/* If a list is returned, the person exists, so return true, 
-		 * if the list is empty the person doesn't exist, return false. */
+		 /*If a list is returned, the person exists, so return true, 
+		  if the list is empty the person doesn't exist, return false. */ 
 		return result.isEmpty() ? false : true;
 	}
 	
+
 	public List<Customer> getAllCustomers() {
+		System.out.println("getAllCustomers() in DAO");
+		
 		List<Customer> listOfCustomers = new ArrayList<>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
+		Query<Customer> query = session.createQuery("FROM Customer");
+		
 		try {
-			Query<Customer> query = session.createQuery("FROM Customer");
-			/* query.list() executes the Hibernate Query Language
+			/*query = session.createQuery("FROM Customer");
+			 query.list() executes the Hibernate Query Language
 			 * (FROM Customer), gets all the Customer rows from the database,
 			 * turns each row into a Customer object, using the Customer
 			 * constructor, adds each Customer to a List and returns that list

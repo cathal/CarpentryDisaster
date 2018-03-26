@@ -21,58 +21,23 @@ public class Material {
 	private BigDecimal totalExcl;
 	@Column
 	private BigDecimal totalIncl;
-	
-	public int getId() {
-		return id;
+	@Column
+	private int customerId;
+	public Material() {
+		super();
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
+	public Material(String description, String item, BigDecimal unitExcl, BigDecimal totalExcl, BigDecimal totalIncl,
+			int customerId) {
+		super();
 		this.description = description;
-	}
-
-	public String getItem() {
-		return item;
-	}
-
-	public void setItem(String item) {
 		this.item = item;
-	}
-
-	public BigDecimal getUnitExcl() {
-		return unitExcl;
-	}
-
-	public void setUnitExcl(BigDecimal unitExcl) {
 		this.unitExcl = unitExcl;
-	}
-
-	public BigDecimal getTotalExcl() {
-		return totalExcl;
-	}
-
-	public void setTotalExcl(BigDecimal totalExcl) {
 		this.totalExcl = totalExcl;
-	}
-
-	public BigDecimal getTotalIncl() {
-		return totalIncl;
-	}
-
-	public void setTotalIncl(BigDecimal totalIncl) {
 		this.totalIncl = totalIncl;
+		this.customerId = customerId;
 	}
-
-	public Material() {}
 	public Material(int id, String description, String item, BigDecimal unitExcl, BigDecimal totalExcl,
-			BigDecimal totalIncl) {
+			BigDecimal totalIncl, int customerId) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -80,18 +45,55 @@ public class Material {
 		this.unitExcl = unitExcl;
 		this.totalExcl = totalExcl;
 		this.totalIncl = totalIncl;
+		this.customerId = customerId;
 	}
-
-	@Override
-	public String toString() {
-		return "Material [id=" + id + ", description=" + description + ", item=" + item + ", unitExcl=" + unitExcl
-				+ ", totalExcl=" + totalExcl + ", totalIncl=" + totalIncl + "]";
+	public int getId() {
+		return id;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getItem() {
+		return item;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
+	public BigDecimal getUnitExcl() {
+		return unitExcl;
+	}
+	public void setUnitExcl(BigDecimal unitExcl) {
+		this.unitExcl = unitExcl;
+	}
+	public BigDecimal getTotalExcl() {
+		return totalExcl;
+	}
+	public void setTotalExcl(BigDecimal totalExcl) {
+		this.totalExcl = totalExcl;
+	}
+	public BigDecimal getTotalIncl() {
+		return totalIncl;
+	}
+	public void setTotalIncl(BigDecimal totalIncl) {
+		this.totalIncl = totalIncl;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + customerId;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((item == null) ? 0 : item.hashCode());
@@ -100,7 +102,6 @@ public class Material {
 		result = prime * result + ((unitExcl == null) ? 0 : unitExcl.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -110,6 +111,8 @@ public class Material {
 		if (getClass() != obj.getClass())
 			return false;
 		Material other = (Material) obj;
+		if (customerId != other.customerId)
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -139,4 +142,11 @@ public class Material {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Material [id=" + id + ", description=" + description + ", item=" + item + ", unitExcl=" + unitExcl
+				+ ", totalExcl=" + totalExcl + ", totalIncl=" + totalIncl + ", customerId=" + customerId + "]";
+	}
+	
+	
 }

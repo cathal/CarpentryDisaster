@@ -37,7 +37,8 @@ public class MaterialDAO {
 			tx = session.beginTransaction();
 			
 			Material material = session.get(Material.class, materialId);
-			/*Deletes the book from the database*/
+			System.out.println("------"+material);
+			/*Deletes the material from the database*/
 			session.delete(material);
 			tx.commit();
 		} catch(HibernateException e) {

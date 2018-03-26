@@ -11,9 +11,7 @@
 </head>
 <body>
 
-
-
-<form action="MaterialsServlet?action=updateMaterials" method="post">
+<form action="MaterialsServlet?action=updateMaterials&customerId=${customerId}" method="post">
 		<input type="hidden" name="materialId" value="${material.id}">
 		
 		<p>Item</p>

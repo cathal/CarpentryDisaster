@@ -11,8 +11,7 @@
 <h2>Insert Materials</h2>
 
 ${message}
-
-<form action="MaterialsServlet?action=insertMaterials" method="post">
+<form action="MaterialsServlet?action=insertMaterials&customerId=${customerId}" method="post">
 	<p>Item</p>
 	<p><input type="text" name="item" placeholder="Item" required> </p>
 	
