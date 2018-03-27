@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Cart;
+import model.Material;
 
 /**
  * new change
@@ -61,17 +62,17 @@ private CartDAO cartDao;
 		
 		System.out.println("In addCartMaterial");
 		
-		Cart c1 = new Cart(0,customerId,materialId,1);
+		/*Cart c1 = new Cart(0,customerId,materialId,1);
 		System.out.println(c1);
 		cartDao.insertCartMaterial(c1);
 		
 		List<Cart> allCartMaterials = cartDao.getAllCartMaterials();
 		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
 		
-		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);*/
 		
 		
-		/*List<Cart> listOfCartMaterials = cartDao.cartMaterialExists(customerId, materialId);
+		List<Cart> listOfCartMaterials = cartDao.cartMaterialExists(customerId, materialId);
 		
 		if(listOfCartMaterials.isEmpty())
 		{
@@ -87,7 +88,12 @@ private CartDAO cartDao;
 		}
 		
 		List<Cart> allCartMaterials = cartDao.getAllCartMaterials();
-		request.getSession().setAttribute("allCartMaterials",allCartMaterials);*/
+		MaterialDAO mat=new MaterialDAO();
+		List<Material> allMaterials = mat.getAllMaterials();
+
+		request.getSession().setAttribute("allMaterials",allMaterials);
+		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
+		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
 	}
 	
 	

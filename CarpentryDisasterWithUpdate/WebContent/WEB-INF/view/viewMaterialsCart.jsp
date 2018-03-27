@@ -22,13 +22,30 @@
 				<th>customerId</th>
 				<th>materialId</th>
 				<th>quantity</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Total</th>
+				<th>ADD</th>
+				
 				
 			</tr>
 			<c:forEach var="material" items="${allCartMaterials}">
-				<tr><td>${material.cartId}</td>
-					<td>${material.customerId}</td>
-					<td>${material.materialId}</td>				
-					<td>${material.quantity}</td>					
+				<tr>
+					<c:forEach  var ="materialID" items="${allMaterials}">
+					
+						<c:if test="${materialID.id==material.materialId}">
+							<td>${material.cartId}</td>
+							<td>${material.customerId}</td>
+							<td>${material.materialId}</td>				
+							<td>${material.quantity}</td>	
+							
+							<td> ${materialID.description}</td>
+							<td>${materialID.totalIncl}</td>
+							<td>${materialID.totalIncl*material.quantity}</td>
+							
+							<td><a href="CartServlet?action=addCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">ADD</a></td>							
+						</c:if>					
+					</c:forEach>					
 				</tr>
 			</c:forEach>
 		</table>
