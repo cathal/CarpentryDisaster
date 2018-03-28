@@ -50,6 +50,8 @@
 			</c:forEach>
 		</table>
 </c:if>
-
+	<p>
+			<a href="CustomersServlet?action=">Customers</a>
+		</p>
 </body>
 </html>

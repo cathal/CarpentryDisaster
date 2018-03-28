@@ -58,6 +58,9 @@
 		<p>
 			<a href="MaterialsServlet?action=showInsertMaterialsForm&customerId=${customerId}">Insert New Material</a>
 		</p>
+		<p>
+			<a href="CustomersServlet?action=">Customers</a>
+		</p>
 		
 </body>
 </html>
