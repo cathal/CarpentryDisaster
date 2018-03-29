@@ -43,7 +43,7 @@ public class CartDAO {
 				
 		return listOfCartMaterials;
 }
-public void deleteCartMaterial(int cartId)
+/*public void deleteCartMaterial(int cartId)
 {
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	Transaction tx = null;
@@ -60,8 +60,25 @@ public void deleteCartMaterial(int cartId)
 		} finally {
 			session.close();
 		}	
-	}
+	}*/
 	
+public void deleteCartMaterial(Cart c)
+{
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	Transaction tx = null;
+		
+	try {
+			tx = session.beginTransaction();
+			session.delete(c);
+			tx.commit();
+	} catch(HibernateException e) {
+			if(tx != null)
+				tx.rollback();
+		e.printStackTrace();
+		} finally {
+			session.close();
+		}	
+	}
 	public Cart getCartObjectById(int customerId, int materialId)
 	{
 		List<Cart> listOfCartMaterials = new ArrayList<>();
@@ -79,24 +96,19 @@ public void deleteCartMaterial(int cartId)
 		return c;
 	}
 	
-	public List<Cart> getAllCartMaterialsForCust(int custId) {
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-		/*Query<Cart> query = session.createQuery("FROM Cart");
-		List<Cart> listOfCartMaterials = query.list();
-		session.close();*/
+	public List<Cart> getAllCartMaterialsForCust(int customerId) {
 		
 		List<Cart> listOfCartMaterials = new ArrayList<>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query<Cart> query;
+		String hql;
+		
 		try {
-			Query<Cart> query = session.createQuery("FROM Cart");
-			/* query.list() executes the Hibernate Query Language
-			 * (FROM Customer), gets all the Customer rows from the database,
-			 * turns each row into a Customer object, using the Customer
-			 * constructor, adds each Customer to a List and returns that list
-			 */
+			hql = "FROM Cart WHERE customerId = :customerId";
+			query = session.createQuery(hql);
+			query.setParameter("customerId",customerId);
 			listOfCartMaterials = query.list();
-			//System.out.println(listOfCartMaterials);
+			
 		}
 		catch (HibernateException e) {
 			e.printStackTrace();

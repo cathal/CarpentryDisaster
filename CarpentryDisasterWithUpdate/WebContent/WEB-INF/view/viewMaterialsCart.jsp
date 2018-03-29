@@ -14,8 +14,22 @@
 
 	<h2>Shopping Cart</h2>
 	
+	<p>
+	Welcome to your shopping cart ${customer.getFirstName()} ${customer.getSurName()}
+	</p>
+	
+	<c:set var="total"/>
+	
+	
+	
+	<c:if test="${empty allCartMaterials}">
+	There are no entries in the Cart database.
+	</c:if>
+	
 	<c:if test="${not empty allCartMaterials}">
 	There are entries in the Cart database.
+	
+	
 	
 	<table border="1">
 			<tr><th>cartId</th>
@@ -25,9 +39,8 @@
 				<th>Description</th>
 				<th>Price</th>
 				<th>Total</th>
-				<th>ADD</th>
-				
-				
+				<th>Add</th>
+				<th>Remove</th>
 			</tr>
 			<c:forEach var="material" items="${allCartMaterials}">
 				<tr>
@@ -43,13 +56,20 @@
 							<td>${materialID.totalIncl}</td>
 							<td>${materialID.totalIncl*material.quantity}</td>
 							
-							<td><a href="CartServlet?action=addCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">ADD</a></td>							
+							<c:set var="total" value="${total + materialID.totalIncl*material.quantity}"/>
+							
+							<td><a href="CartServlet?action=addCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">Add</a></td>
+							<td><a href="CartServlet?action=deleteCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">Remove</a></td>
+														
 						</c:if>					
 					</c:forEach>					
 				</tr>
 			</c:forEach>
 		</table>
 </c:if>
+	<p>
+	Total cost: &euro; ${total}
+	</p>
 	<p>
 			<a href="CustomersServlet?action=">Customers</a>
 		</p>

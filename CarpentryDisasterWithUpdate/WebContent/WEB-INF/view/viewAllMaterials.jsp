@@ -34,6 +34,7 @@
 				<th>Delete</th>
 				<th>Update</th>
 				<th>Add to cart</th>
+				<th>View Cart</th>
 				
 			</tr>
 			<c:forEach var="material" items="${listOfMaterials}">

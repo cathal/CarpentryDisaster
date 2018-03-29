@@ -123,7 +123,29 @@ public class CustomerDAO {
 		return listOfCustomers;
 	}
 	
-	
+	public List<Customer> getAllCustomersByCustId(int customerId) {
+		System.out.println("getAllCustomers() in DAO");
+		
+		List<Customer> listOfCustomers = new ArrayList<>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Query<Customer> query;
+		String hql;
+		
+		try {
+				hql = "FROM Customer WHERE id =:customerId";
+				query = session.createQuery(hql);
+				query.setParameter("customerId",customerId);
+				listOfCustomers = query.list();
+				System.out.println(listOfCustomers);
+		}
+		catch (HibernateException e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return listOfCustomers;
+	}
 
 	public List<Customer> search(String search, String searchType) {
 		List<Customer> listOfCustomers = new ArrayList<>();
