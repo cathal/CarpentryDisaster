@@ -95,8 +95,8 @@ private CartDAO cartDao;
 		request.getSession().setAttribute("customer",customer);
 		request.getSession().setAttribute("allMaterials",allMaterials);
 		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
-		//request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
-		response.sendRedirect("CartServlet?action=addCartMaterial&customerId="+customerId+"&materialId="+materialId);
+		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
+		//response.sendRedirect("CartServlet?action=addCartMaterial&customerId="+customerId+"&materialId="+materialId);
 	}
 	
 private void deleteCartMaterial(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
