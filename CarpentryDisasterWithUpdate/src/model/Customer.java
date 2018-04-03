@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,9 +54,11 @@ public class Customer {
 	
 	public Customer () {}
 	
+	
+	
 	public Customer(int id, String firstName, String surName, Set<PhoneNumber> phoneNumbers, String address,
-			Set<EmailAddress> emails, String description, String recommendedBy, String year, String startdate,
-			String finishdate, Set<Material> materials) {
+			Set<EmailAddress> emails, HashSet<Material> materials, String description, String recommendedBy,
+			String year, String startdate, String finishdate) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -63,14 +66,16 @@ public class Customer {
 		this.phoneNumbers = phoneNumbers;
 		this.address = address;
 		this.emails = emails;
+		this.materials = materials;
 		this.description = description;
 		this.recommendedBy = recommendedBy;
 		this.year = year;
 		this.startdate = startdate;
 		this.finishdate = finishdate;
-		this.materials = materials;
 	}
-	
+
+
+
 	public void addMaterial(Material m)
 	{
 		materials.add(m);
@@ -81,16 +86,12 @@ public class Customer {
 		materials.remove(m);
 	}
 	
-	public void updateMaterial(Material m)
-	{
-		
-	}
-
+	
 	public Set<Material> getMaterials() {
 		return materials;
 	}
 
-	public void setMaterials(Set<Material> materials) {
+	public void setMaterials(HashSet<Material> materials) {
 		this.materials = materials;
 	}
 
@@ -182,7 +183,7 @@ public class Customer {
 		this.finishdate = finishdate;
 	}
 
-	
+
 
 	@Override
 	public int hashCode() {
@@ -202,6 +203,8 @@ public class Customer {
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -272,6 +275,8 @@ public class Customer {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", surName=" + surName + ", phoneNumbers="
@@ -279,12 +284,10 @@ public class Customer {
 				+ ", description=" + description + ", recommendedBy=" + recommendedBy + ", year=" + year
 				+ ", startdate=" + startdate + ", finishdate=" + finishdate + "]";
 	}
+	
+	
 
-	
-	
-	
-	
-	}
+}
 
 
 	

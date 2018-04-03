@@ -4,12 +4,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import model.Cart;
 import model.Customer;
 import model.EmailAddress;
-
 import model.PhoneNumber;
-
 import model.Material;
+
 //github.com/TrioOrg/Trio.git
 
 
@@ -17,7 +17,9 @@ public class HibernateUtil {
 	/* A private constructor prevents a class from being instantiated.
 	 * This class exists to provide a static method to retrieve the one
 	 * instance of the SessionFactory.  */
-	private HibernateUtil() {}
+	private HibernateUtil() {
+		System.out.println("Hibernate Util");
+	}
 	
 	/* You need one SessionFactory per web app. It will be used to 
 	 * create Session objects which will be used for every 
@@ -44,8 +46,9 @@ public class HibernateUtil {
 		config.addAnnotatedClass(Customer.class);
 		config.addAnnotatedClass(EmailAddress.class);
 		config.addAnnotatedClass(PhoneNumber.class);
-
 		config.addAnnotatedClass(Material.class);
+		config.addAnnotatedClass(Cart.class);
+		
 		//github.com/TrioOrg/Trio.git<!-->branch 'master' of https
 		/* config.getProperties() gets all the mappings/ properties 
 		 * from the hibernate config file. */
@@ -56,6 +59,8 @@ public class HibernateUtil {
 		/* A SessionFactory is used to create each Session instance, 
 		 * the Configuration object is used to create the SessionFactory */
 		sessionFactory = config.buildSessionFactory(builder.build());
+		
+		System.out.println("End of static block");
 	}
 	
 	/* A static method to return the one instance of the sessionFactory */

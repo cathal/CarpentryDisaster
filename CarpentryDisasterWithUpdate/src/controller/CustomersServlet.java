@@ -29,18 +29,17 @@ public class CustomersServlet extends HttpServlet {
     public CustomersServlet() {
     	customerDao = new CustomerDAO();
     }
-
+       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CarpentryDisaster");
+		
 		
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "viewAll";
 		}
-		
-		
-		
+	
 		switch (action) {
 		case "updateCustomer":
 			updateCustomer(request, response);
@@ -49,6 +48,7 @@ public class CustomersServlet extends HttpServlet {
 			deleteCustomer(request, response);
 			break;
 		case "showCustomerSearchForm":
+			System.out.println(" in the case search");
 			request.getRequestDispatcher("WEB-INF/view/customerSearch.jsp").forward(request, response);
 			break;
 		case "showUpdateForm":
@@ -58,6 +58,7 @@ public class CustomersServlet extends HttpServlet {
 			searchForCustomer(request, response);
 			break;
 		case "showInsertCustomerForm":
+			System.out.println(" in the case insert");
 			request.getRequestDispatcher("WEB-INF/view/insertCustomer.jsp").forward(request, response);
 			break;
 		case "insertCustomer":
@@ -76,11 +77,9 @@ public class CustomersServlet extends HttpServlet {
 		String firstName = request.getParameter("firstname");
 		String surName = request.getParameter("surname");
 		
-		//String phonenumber = request.getParameter("phonenumber");//
-		
+		//String phonenumber = request.getParameter("phonenumber");//		
 		/*String [] phoneNumbers = request.getParameter("phoneNumbers").split("[\\s,]+");
-		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
-		
+		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();		
 		 The loop goes through the String array of phone numbers (each one
 		 * is a String). To add to the HashSet, I need each phone number
 		 * which is a String to be a PhoneNumber object, therefore
@@ -90,24 +89,16 @@ public class CustomersServlet extends HttpServlet {
 	*/
 		
 		String [] phoneNumbers =request.getParameter("phoneNumbers").split("[\\s,]+");
-		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();
-		
-		for(String phoneNumber: phoneNumbers) {
-			
-			setOfPhoneNumbers.add(new PhoneNumber(0, phoneNumber));
-			
+		HashSet<PhoneNumber> setOfPhoneNumbers = new HashSet<>();		
+		for(String phoneNumber: phoneNumbers) {			
+			setOfPhoneNumbers.add(new PhoneNumber(0, phoneNumber));			
 		}
 		
 		/* You could use a constructor with no id (if you have one) or use
 		 * the constructor that takes all parameters and pass in 0 for the id,
 		 * if you omitted the id, it would default to 0 anyway. 
 		 */
-		
-		
-		
-		
-		String address = request.getParameter("address");
-		
+		String address = request.getParameter("address");		
 		String [] emails = request.getParameter("emails").split("[\\s,]+");
 		HashSet<EmailAddress> setOfEmails = new HashSet<>();
 		/*
@@ -122,33 +113,45 @@ public class CustomersServlet extends HttpServlet {
 			 * if you omitted the id, it would default to 0 anyway. 
 			 */
 			setOfEmails.add(new EmailAddress(0, email));
-			
-			
 		}
 	
-		
-		
 		String description = request.getParameter("description");
 		String recommendedBy = request.getParameter("recommendedBy");
 		String year = request.getParameter("year");
 		String startdate = request.getParameter("startdate");
 		String finishdate = request.getParameter("finishdate");
 		
-		HashSet<Material> materials = new HashSet<>();
+		Customer c = customerDao.getCustomerbyId(customerId);
+		c.setFirstName(firstName);
+		c.setSurName(surName);
+		c.setPhoneNumbers(setOfPhoneNumbers);
+		c.setAddress(address);
+		c.setEmails(setOfEmails);
+		c.setDescription(description);
+		c.setRecommendedBy(recommendedBy);
+		c.setYear(year);
+		c.setStartdate(startdate);
+		c.setFinishdate(finishdate);
 		
-		//Create an updated customer out of them
-		Customer customerToUpdate= new Customer(customerId, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate, materials);
+		
 				
+		//request.setAttribute("customerId", customerId);
 		
 		// Pass that book to the DAO so that the book with the same
-				 //id can be updated in the list. */
-				
-		customerDao.updateCustomer(customerToUpdate);
-				
+		 //id can be updated in the list. */
+		
+		customerDao.updateCustomer(c);
+		
 		// request is complete, redirect the response to a 'viewAll'
+
+		
 		response.sendRedirect("CustomersServlet?action=viewAll");
 		
+	
+		
 	}
+	
+
 	
 	
 	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -248,8 +251,7 @@ public class CustomersServlet extends HttpServlet {
 		
 		HashSet<Material> materials = new HashSet<>();
 		 //Create a Customer object 
-		Customer insertCustomer = new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, description, recommendedBy, year, startdate, finishdate, materials);
-		
+		Customer insertCustomer = new Customer(0, firstName, surName, setOfPhoneNumbers, address, setOfEmails, materials, description, recommendedBy, year, startdate, finishdate);
 		customerDao.insertCustomer(insertCustomer);
 		/* After a Customer is inserted, view them all! */
 		response.sendRedirect("CustomersServlet?action=viewAll");
@@ -271,6 +273,7 @@ public class CustomersServlet extends HttpServlet {
 	
 	private void getAllCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		System.out.println("In getallcus");
 		/* Gets the list of Customers from the DAO (remember the DAO could
 		 * get the Customers from a database/ list/ XML file.
 		 */
@@ -281,16 +284,16 @@ public class CustomersServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\viewCustomers.jsp");
 		dispatcher.forward(request, response);
 	}
-	
-	
-//	Set<EmailAddress> marysEmails = new HashSet<>();
-//	EmailAddress email1 = new EmailAddress(0, "mary@murphy.ie");
-//	EmailAddress email2 = new EmailAddress(0, "marymurp@me.com");
-//	// Add the EmailAddress objects to the HashSet
-//	marysEmails.add(email1);
-//	marysEmails.add(email2);
 //	
-//	Person p = new Person(0, "Mary", "Murphy", "0839876541", marysEmails);
-//	dao.insertPerson(p);
-//	response.getWriter().println(p);
+////	
+////	Set<EmailAddress> marysEmails = new HashSet<>();
+////	EmailAddress email1 = new EmailAddress(0, "mary@murphy.ie");
+////	EmailAddress email2 = new EmailAddress(0, "marymurp@me.com");
+////	// Add the EmailAddress objects to the HashSet
+////	marysEmails.add(email1);
+////	marysEmails.add(email2);
+////	
+////	Person p = new Person(0, "Mary", "Murphy", "0839876541", marysEmails);
+////	dao.insertPerson(p);
+////	response.getWriter().println(p);
 }

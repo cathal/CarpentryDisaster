@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>List of Customers</title>
+
 <style><%@include file="/WEB-INF/css/style.css"%></style> 
+
+
+
+
+
 </head>
 <body>
 	<h2>List of Customers from the Address Book.</h2>
@@ -56,9 +62,7 @@
 					<td>${customer.finishdate}</td>
 					<td><a href="CustomersServlet?action=delete&customerId=${customer.id}">Delete</a></td>
 					<td><a href="CustomersServlet?action=showUpdateForm&customerId=${customer.id}">Update</a></td>
-					<td><a href="MaterialsServlet?action=viewAll&customerId=${customer.id}&customer=${customer}">Materials</a></td>
-					
-					
+					<td><a href="MaterialsServlet?action=viewAll&customerId=${customer.id}">Materials</a></td>
 				</tr>
 			</c:forEach>
 		</table>
