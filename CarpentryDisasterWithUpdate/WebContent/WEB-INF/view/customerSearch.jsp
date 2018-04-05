@@ -28,7 +28,7 @@
 	<input type="submit" value="Search for customer">
 	
 	<p>
-			<a href="CustomersServlet?action=">Home</a>
+			<a href="CustomersServlet?action=">Customers</a>
 		</p>
 
 </form>

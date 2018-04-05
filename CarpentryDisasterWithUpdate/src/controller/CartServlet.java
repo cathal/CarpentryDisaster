@@ -46,6 +46,12 @@ private CartDAO cartDao;
 		case "addCartMaterial":
 			addCartMaterial(request, response);
 			break;
+		case "addCartMaterial2":
+			addCartMaterial2(request, response);
+			break;
+		case "viewCart":
+			viewCart(request, response);
+			break;
 		case "deleteCartMaterial":
 			deleteCartMaterial(request, response);
 			break;
@@ -95,6 +101,98 @@ private CartDAO cartDao;
 		request.getSession().setAttribute("customer",customer);
 		request.getSession().setAttribute("allMaterials",allMaterials);
 		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
+		
+		//request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
+		
+		response.sendRedirect("MaterialsServlet?action=viewAll&customerId="+customerId);
+	
+	}
+	
+	private void addCartMaterial2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+		
+		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		int materialId = Integer.parseInt(request.getParameter("materialId"));
+		
+		System.out.println("customerId " + customerId);
+		System.out.println("materialId " + materialId);
+		
+		System.out.println("In addCartMaterial");
+	
+		List<Cart> listOfCartMaterials = cartDao.cartMaterialExists(customerId, materialId);
+		
+		if(listOfCartMaterials.isEmpty())
+		{
+			Cart newCartMaterial = new Cart(0, customerId, materialId, 1);
+			cartDao.insertCartMaterial(newCartMaterial);
+		}
+		else
+		{
+			Cart updateCartMaterial = cartDao.getCartObjectById(customerId, materialId);
+			int quantity = updateCartMaterial.getQuantity();
+			updateCartMaterial.setQuantity(quantity +1);
+			cartDao.updateCart(updateCartMaterial);
+		}
+		
+		//List<Cart> allCartMaterials = cartDao.getAllCartMaterials();
+		List<Cart> allCartMaterials = cartDao.getAllCartMaterialsForCust(customerId);
+		//System.out.println("******************"+allCartMaterials+"***********************");
+		MaterialDAO mat=new MaterialDAO();
+		List<Material> allMaterials = mat.getAllMaterials();
+		
+		CustomerDAO customerDao = new CustomerDAO();
+		Customer customer = customerDao.getCustomerbyId(customerId);
+		
+		
+		request.getSession().setAttribute("customer",customer);
+		request.getSession().setAttribute("allMaterials",allMaterials);
+		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
+		
+		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
+		
+		//response.sendRedirect("MaterialsServlet?action=viewAll&customerId="+customerId);
+	
+	}
+	
+	private void viewCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int customerId = Integer.parseInt(request.getParameter("customerId"));
+		//int materialId = Integer.parseInt(request.getParameter("materialId"));
+		
+		System.out.println("customerId " + customerId);
+		//System.out.println("materialId " + materialId);
+		
+		System.out.println("In addCartMaterial");
+	
+		//List<Cart> listOfCartMaterials = cartDao.cartMaterialExists(customerId, materialId);
+		
+		/*if(listOfCartMaterials.isEmpty())
+		{
+			Cart newCartMaterial = new Cart(0, customerId, materialId, 1);
+			cartDao.insertCartMaterial(newCartMaterial);
+		}
+		else
+		{
+			Cart updateCartMaterial = cartDao.getCartObjectById(customerId, materialId);
+			int quantity = updateCartMaterial.getQuantity();
+			updateCartMaterial.setQuantity(quantity +1);
+			cartDao.updateCart(updateCartMaterial);
+		}*/
+		
+		//List<Cart> allCartMaterials = cartDao.getAllCartMaterials();
+		List<Cart> allCartMaterials = cartDao.getAllCartMaterialsForCust(customerId);
+		//System.out.println("******************"+allCartMaterials+"***********************");
+		MaterialDAO mat=new MaterialDAO();
+		List<Material> allMaterials = mat.getAllMaterials();
+		
+		CustomerDAO customerDao = new CustomerDAO();
+		Customer customer = customerDao.getCustomerbyId(customerId);
+		
+		
+		request.getSession().setAttribute("customer",customer);
+		request.getSession().setAttribute("allMaterials",allMaterials);
+		request.getSession().setAttribute("allCartMaterials",allCartMaterials);
+		
 		request.getRequestDispatcher("WEB-INF/view/viewMaterialsCart.jsp").forward(request, response);
 		//response.sendRedirect("CartServlet?action=addCartMaterial&customerId="+customerId+"&materialId="+materialId);
 	}

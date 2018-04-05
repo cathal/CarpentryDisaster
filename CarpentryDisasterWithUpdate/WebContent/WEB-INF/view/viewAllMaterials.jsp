@@ -34,7 +34,7 @@
 				<th>Delete</th>
 				<th>Update</th>
 				<th>Add to cart</th>
-				<th>View Cart</th>
+				<!-- <th>View Cart</th> -->
 				
 			</tr>
 			<c:forEach var="material" items="${listOfMaterials}">
@@ -50,14 +50,17 @@
 					<td><a href="MaterialsServlet?action=delete&materialId=${material.id}&customerId=${customerId}">Delete</a></td>
 					<td><a href="MaterialsServlet?action=showUpdateForm&materialId=${material.id}&customerId=${customerId}">Update</a></td>
 					<td><a href="CartServlet?action=addCartMaterial&materialId=${material.id}&customerId=${customerId}">Add to cart</a></td>
-					
-					
+					<%-- <td><a href="CartServlet?action=viewCart&materialId=${material.id}&customerId=${customerId}">View Cart</a></td> --%>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 		<p>
 			<a href="MaterialsServlet?action=showInsertMaterialsForm&customerId=${customerId}">Insert New Material</a>
+		</p>
+		<p>
+			<%-- <a href="CartServlet?action=viewCart&materialId=${material.id}&customerId=${customerId}">View Cart</a> --%>
+			<a href="CartServlet?action=viewCart&customerId=${customerId}">View Cart</a>
 		</p>
 		<p>
 			<a href="CustomersServlet?action=">Customers</a>

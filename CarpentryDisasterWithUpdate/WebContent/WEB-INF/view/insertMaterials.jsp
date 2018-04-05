@@ -33,7 +33,7 @@ ${message}
 	<p><input type="submit" value="Insert Material"></p>
 	
 	<p>
-			<a href="MaterialsServlet?action=">Home</a>
+			<a href="MaterialsServlet?action=viewAll&customerId=${customerId}">Materials</a>
 		</p>
 </form>
 

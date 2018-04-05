@@ -51,7 +51,7 @@ ${message}
 	<p><input type="submit" value="Insert Customer"></p>
 	
 	<p>
-			<a href="CustomersServlet?action=">Home</a>
+			<a href="CustomersServlet?action=">Customers</a>
 		</p>
 </form>
 

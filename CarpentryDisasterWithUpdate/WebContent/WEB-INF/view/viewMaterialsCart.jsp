@@ -58,7 +58,7 @@
 							
 							<c:set var="total" value="${total + materialID.totalIncl*material.quantity}"/>
 							
-							<td><a href="CartServlet?action=addCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">Add</a></td>
+							<td><a href="CartServlet?action=addCartMaterial2&materialId=${material.materialId}&customerId=${material.customerId}">Add</a></td>
 							<td><a href="CartServlet?action=deleteCartMaterial&materialId=${material.materialId}&customerId=${material.customerId}">Remove</a></td>
 														
 						</c:if>					
@@ -73,5 +73,8 @@
 	<p>
 			<a href="CustomersServlet?action=">Customers</a>
 		</p>
+		<P>
+			<a href="MaterialsServlet?action=viewAll&customerId=${customer.id}">Materials</a>
+		</P>
 </body>
 </html>

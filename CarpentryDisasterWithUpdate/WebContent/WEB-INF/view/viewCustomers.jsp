@@ -73,8 +73,6 @@
 		<p>
 			<a href="CustomersServlet?action=showCustomerSearchForm">Search for Customer</a>
 		</p>
-		<p>
-			<a href="CustomersServlet?action=">Home</a>
-		</p>
+		
 </body>
 </html>
