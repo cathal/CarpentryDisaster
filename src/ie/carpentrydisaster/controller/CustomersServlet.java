@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.mapping.Set;
 import org.omg.CORBA.Request;
 
-import model.Customer;
-import model.EmailAddress;
-import model.Material;
-import model.PhoneNumber;
+import ie.carpentrydisaster.model.*;
 
 @WebServlet("/CustomersServlet")
 public class CustomersServlet extends HttpServlet {

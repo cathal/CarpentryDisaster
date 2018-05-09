@@ -8,8 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import model.Customer;
-import model.EmailAddress;
+import ie.carpentrydisaster.model.*;
 
 public class CustomerDAO {
 	

@@ -7,9 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.Cart;
-import model.Customer;
-import model.EmailAddress;
+
+import ie.carpentrydisaster.model.*;
 
 public class CartDAO {
 	public void insertCartMaterial(Cart c) {

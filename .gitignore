@@ -3,3 +3,5 @@ application.properties
 WebContent/WEB-INF/classes/
 
 WebContent/WEB-INF/lib/
+
+target/

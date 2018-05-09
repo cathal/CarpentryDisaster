@@ -6,11 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import model.Cart;
-import model.Customer;
-import model.EmailAddress;
-import model.PhoneNumber;
-import model.Material;
+import java.io.*;
+import ie.carpentrydisaster.model.*;
 
 //github.com/TrioOrg/Trio.git
 
@@ -37,38 +34,44 @@ public class HibernateUtil {
 		 * It hooks up to the hibernate.cfg.xml file to read the 
 		 * properties. The configure() method uses the mapping and 
 		 * properties in that resource/ config file. */
-		Properties applicationConfig = new Properties();
-		applicationConfig.load(new FileInputStream(new File("WEB-INF/config/application.properties")));
+		try {
+			Properties applicationConfig = new Properties();
+			applicationConfig.load(new FileInputStream(new File("WEB-INF/config/application.properties")));
 
-		Configuration hibernateConfig = new Configuration().configure();
-		hibernateConfig.setProperty("connection.url", applicationConfig.getProperty("database_host"));
-		hibernateConfig.setProperty("connection.username", applicationConfig.getProperty("database_user"));
-		hibernateConfig.setProperty("connection.password", applicationConfig.getProperty("database_password"));
+			Configuration hibernateConfig = new Configuration().configure();
+			hibernateConfig.setProperty("connection.url", applicationConfig.getProperty("database_host"));
+			hibernateConfig.setProperty("connection.username", applicationConfig.getProperty("database_user"));
+			hibernateConfig.setProperty("connection.password", applicationConfig.getProperty("database_password"));
 
-		/* Lets the Configuration know about the Book class, so that
-		 * the annotations can be used to map between Java and SQL 
-		 * Server 
-		 * If you omit one of these lines, you will get the following exception:
-		 * org.hibernate.MappingException: Unknown entity: model.User
-		 **/
-		hibernateConfig.addAnnotatedClass(Customer.class);
-		hibernateConfig.addAnnotatedClass(EmailAddress.class);
-		hibernateConfig.addAnnotatedClass(PhoneNumber.class);
-		hibernateConfig.addAnnotatedClass(Material.class);
-		hibernateConfig.addAnnotatedClass(Cart.class);
-		
-		//github.com/TrioOrg/Trio.git<!-->branch 'master' of https
-		/* config.getProperties() gets all the mappings/ properties 
-		 * from the hibernate config file. */
-		StandardServiceRegistryBuilder builder = 
-				new StandardServiceRegistryBuilder().
-				applySettings(hibernateConfig.getProperties());
-		
-		/* A SessionFactory is used to create each Session instance, 
-		 * the Configuration object is used to create the SessionFactory */
-		sessionFactory = hibernateConfig.buildSessionFactory(builder.build());
-		
-		System.out.println("End of static block");
+			/* Lets the Configuration know about the Book class, so that
+			* the annotations can be used to map between Java and SQL 
+			* Server 
+			* If you omit one of these lines, you will get the following exception:
+			* org.hibernate.MappingException: Unknown entity: model.User
+			**/
+			hibernateConfig.addAnnotatedClass(Customer.class);
+			hibernateConfig.addAnnotatedClass(EmailAddress.class);
+			hibernateConfig.addAnnotatedClass(PhoneNumber.class);
+			hibernateConfig.addAnnotatedClass(Material.class);
+			hibernateConfig.addAnnotatedClass(Cart.class);
+			
+			//github.com/TrioOrg/Trio.git<!-->branch 'master' of https
+			/* config.getProperties() gets all the mappings/ properties 
+			* from the hibernate config file. */
+			StandardServiceRegistryBuilder builder = 
+					new StandardServiceRegistryBuilder().
+					applySettings(hibernateConfig.getProperties());
+			
+			/* A SessionFactory is used to create each Session instance, 
+			* the Configuration object is used to create the SessionFactory */
+			sessionFactory = hibernateConfig.buildSessionFactory(builder.build());
+			
+			System.out.println("End of static block");
+		}
+		catch(Exception e) {
+			System.out.print("ERRROROROROROROR: Something bad happened");
+			System.out.println(e);
+		}
 	}
 	
 	/* A static method to return the one instance of the sessionFactory */
