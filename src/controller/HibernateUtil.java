@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -35,30 +37,36 @@ public class HibernateUtil {
 		 * It hooks up to the hibernate.cfg.xml file to read the 
 		 * properties. The configure() method uses the mapping and 
 		 * properties in that resource/ config file. */
-		Configuration config = new Configuration().configure();
-		
+		Properties applicationConfig = new Properties();
+		applicationConfig.load(new FileInputStream(new File("WEB-INF/config/application.properties")));
+
+		Configuration hibernateConfig = new Configuration().configure();
+		hibernateConfig.setProperty("connection.url", applicationConfig.getProperty("database_host"));
+		hibernateConfig.setProperty("connection.username", applicationConfig.getProperty("database_user"));
+		hibernateConfig.setProperty("connection.password", applicationConfig.getProperty("database_password"));
+
 		/* Lets the Configuration know about the Book class, so that
 		 * the annotations can be used to map between Java and SQL 
 		 * Server 
 		 * If you omit one of these lines, you will get the following exception:
 		 * org.hibernate.MappingException: Unknown entity: model.User
 		 **/
-		config.addAnnotatedClass(Customer.class);
-		config.addAnnotatedClass(EmailAddress.class);
-		config.addAnnotatedClass(PhoneNumber.class);
-		config.addAnnotatedClass(Material.class);
-		config.addAnnotatedClass(Cart.class);
+		hibernateConfig.addAnnotatedClass(Customer.class);
+		hibernateConfig.addAnnotatedClass(EmailAddress.class);
+		hibernateConfig.addAnnotatedClass(PhoneNumber.class);
+		hibernateConfig.addAnnotatedClass(Material.class);
+		hibernateConfig.addAnnotatedClass(Cart.class);
 		
 		//github.com/TrioOrg/Trio.git<!-->branch 'master' of https
 		/* config.getProperties() gets all the mappings/ properties 
 		 * from the hibernate config file. */
 		StandardServiceRegistryBuilder builder = 
 				new StandardServiceRegistryBuilder().
-				applySettings(config.getProperties());
+				applySettings(hibernateConfig.getProperties());
 		
 		/* A SessionFactory is used to create each Session instance, 
 		 * the Configuration object is used to create the SessionFactory */
-		sessionFactory = config.buildSessionFactory(builder.build());
+		sessionFactory = hibernateConfig.buildSessionFactory(builder.build());
 		
 		System.out.println("End of static block");
 	}
