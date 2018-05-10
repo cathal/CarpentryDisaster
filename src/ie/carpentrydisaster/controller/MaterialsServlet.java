@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ie.carpentrydisaster.model.*;
+import ie.carpentrydisaster.dao.MaterialDAO;
+import ie.carpentrydisaster.model.Material;
 
 /**
  * Servlet implementation class MaterialsServlet

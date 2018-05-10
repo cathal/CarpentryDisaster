@@ -3,7 +3,6 @@ package ie.carpentrydisaster.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ie.carpentrydisaster.model.*;
+import ie.carpentrydisaster.dao.CartDAO;
+import ie.carpentrydisaster.dao.CustomerDAO;
+import ie.carpentrydisaster.dao.MaterialDAO;
+import ie.carpentrydisaster.model.Cart;
+import ie.carpentrydisaster.model.Customer;
+import ie.carpentrydisaster.model.Material;
 
 /**
  * new change
@@ -21,7 +25,7 @@ import ie.carpentrydisaster.model.*;
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-private CartDAO cartDao;
+	private CartDAO cartDao;
 	
     public CartServlet() {
     	cartDao = new CartDAO();
@@ -53,7 +57,6 @@ private CartDAO cartDao;
 		case "deleteCartMaterial":
 			deleteCartMaterial(request, response);
 			break;
-		
 		default: // viewAll
 			getAllCartMaterials(request, response);
 			break;

@@ -1,4 +1,4 @@
-package ie.carpentrydisaster.controller;
+package ie.carpentrydisaster.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import ie.carpentrydisaster.model.*;
+import ie.carpentrydisaster.utils.HibernateUtil;
 
 public class CartDAO {
 	public void insertCartMaterial(Cart c) {

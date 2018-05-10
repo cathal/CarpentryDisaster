@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.mapping.Set;
-import org.omg.CORBA.Request;
-
-import ie.carpentrydisaster.model.*;
+import ie.carpentrydisaster.dao.CustomerDAO;
+import ie.carpentrydisaster.model.Customer;
+import ie.carpentrydisaster.model.EmailAddress;
+import ie.carpentrydisaster.model.Material;
+import ie.carpentrydisaster.model.PhoneNumber;
 
 @WebServlet("/CustomersServlet")
 public class CustomersServlet extends HttpServlet {

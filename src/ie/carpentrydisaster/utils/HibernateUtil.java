@@ -1,15 +1,18 @@
-package ie.carpentrydisaster.controller;
+package ie.carpentrydisaster.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import java.io.*;
-import ie.carpentrydisaster.model.*;
-
-//github.com/TrioOrg/Trio.git
+import ie.carpentrydisaster.model.Cart;
+import ie.carpentrydisaster.model.Customer;
+import ie.carpentrydisaster.model.EmailAddress;
+import ie.carpentrydisaster.model.Material;
+import ie.carpentrydisaster.model.PhoneNumber;
 
 
 public class HibernateUtil {
@@ -75,7 +78,7 @@ public class HibernateUtil {
 	}
 	
 	/* A static method to return the one instance of the sessionFactory */
-	protected static SessionFactory getSessionFactory() {
+	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 }

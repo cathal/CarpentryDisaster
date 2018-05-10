@@ -4,6 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ie.carpentrydisaster</groupId>
     <artifactId>carpentrydisaster</artifactId>
+    <packaging>war</packaging>
+    <name>Carpentry Disaster</name>
     <version>1</version>
 
     <build>
@@ -46,6 +48,14 @@
                     <overWriteReleases>false</overWriteReleases>
                     <overWriteSnapshots>false</overWriteSnapshots>
                     <overWriteIfNewer>true</overWriteIfNewer>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <packagingIncludes>WebContent/WEB-INF/**</packagingIncludes>
                 </configuration>
             </plugin>
         </plugins>
